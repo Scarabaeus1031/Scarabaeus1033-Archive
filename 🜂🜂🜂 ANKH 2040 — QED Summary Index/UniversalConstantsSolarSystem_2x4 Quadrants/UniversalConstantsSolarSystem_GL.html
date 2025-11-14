@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Universal Constants Solar System · A/B/C Prime Layers · n‑Bands</title>
+<style>
+  html, body { margin:0; height:100%; background:#0b1020; color:#e6eefc; font-family:system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
+  #app { position:fixed; inset:0; }
+  #hud {
+    position: fixed; top: 12px; left: 12px; right: 12px; display:flex; gap:12px; flex-wrap:wrap;
+    background: rgba(10,16,30,.5); border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:12px 14px; backdrop-filter: blur(6px);
+  }
+  #hud .block { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+  #hud .title { font-weight:700; letter-spacing:.02em; opacity:.9; margin-right:8px; }
+  .chip { padding:6px 10px; border-radius:10px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.05); }
+  .eq { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size:12px; opacity:.9; }
+  a { color:#9bd3ff; text-decoration:none; }
+  .legend { display:flex; gap:8px; align-items:center; }
+  .sw { width:12px; height:12px; border-radius:50%; display:inline-block; margin-right:6px; border:1px solid rgba(255,255,255,.25); }
+  .blue { background:#4aa3ff; }
+  .red  { background:#ff6b6b; }
+  .green{ background:#69f0ae; }
+  .gold { background:#ffcf5a; }
+  .mag  { background:#b388ff; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="hud">
+  <div class="block">
+    <span class="title">Layers:</span>
+    <label class="chip"><input type="checkbox" id="chkA" checked> <span class="legend"><span class="sw blue"></span>A‑primes (Asteroids)</span></label>
+    <label class="chip"><input type="checkbox" id="chkB" checked> <span class="legend"><span class="sw red"></span>B‑primes (Planets/Satellites)</span></label>
+    <label class="chip"><input type="checkbox" id="chkC" checked> <span class="legend"><span class="sw green"></span>C‑primes (Comets)</span></label>
+    <label class="chip"><input type="checkbox" id="chkNB" checked> <span class="legend"><span class="sw gold"></span>η n‑Bands (0.429/0.456/0.487)</span></label>
+    <label class="chip"><input type="checkbox" id="chkRails" checked> <span class="legend"><span class="sw mag"></span>Rails (√2/√5/√17)</span></label>
+    <label class="chip"><input type="checkbox" id="chkOort" checked> Oort shell</label>
+  </div>
+  <div class="block">
+    <span class="title">Counts:</span>
+    <span class="chip">Satellites total (symbolic): <span id="lblMoons">1022</span></span>
+    <span class="chip">Seed: <span id="lblSeed">1087</span></span>
+  </div>
+  <div class="block" style="flex:1 1 100%;">
+    <span class="title">Equations (map → visuals):</span>
+    <span class="chip eq">φ³/π² ≈ 0.429 (Zeta‑Line)</span>
+    <span class="chip eq">η = {0.429, 0.456, 0.487}</span>
+    <span class="chip eq">Rails = {√2, √5, √17}</span>
+    <span class="chip eq">204² Gate: 23³+24³+25³ = 41,616</span>
+    <span class="chip eq">√432 ≈ 20.785</span>
+  </div>
+</div>
+
+<script type="module">
+// Import Three via CDN; will load when user opens locally with internet.
+import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+import { OrbitControls } from 'https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js';
+
+// ------------ Scene setup ------------
+const app = document.getElementById('app');
+const renderer = new THREE.WebGLRenderer({ antialias:true, alpha:true });
+renderer.setPixelRatio(devicePixelRatio);
+renderer.setSize(innerWidth, innerHeight);
+app.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+
+const camera = new THREE.PerspectiveCamera(55, innerWidth/innerHeight, 0.1, 1e6);
+camera.position.set(0, 120, 360);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.06;
+
+// Lighting
+const hemi = new THREE.HemisphereLight(0x99ccff, 0x001122, 0.7);
+scene.add(hemi);
+const dir = new THREE.DirectionalLight(0xffffff, 0.6);
+dir.position.set(100,200,80);
+scene.add(dir);
+
+// ------------ Parameters (symbolic) ------------
+// We treat satellites as symbolic "moon slots" distributed per giant planet.
+const TOTAL_SATELLITES = 1022; // from user
+document.getElementById('lblMoons').textContent = TOTAL_SATELLITES;
+const RNG_SEED = 1087; // your scarab bridge
+document.getElementById('lblSeed').textContent = RNG_SEED;
+
+// Distribution guess (proportional; not claiming real catalog counts)
+const dist = {
+  Jupiter: 0.39,  // ~40%
+  Saturn : 0.30,  // ~30%
+  Uranus : 0.15,  // ~15%
+  Neptune: 0.12,  // ~12%
+  Inner  : 0.04   // remainder across inner planets
+};
+
+// Placement scales (arbitrary units, read as schematic AU)
+const AU = 60; // visual scale unit
+const planets = [
+  { name:'Mercury', x: 0.39*AU, r: 2.0, color:0x9e9e9e },
+  { name:'Venus',   x: 0.72*AU, r: 3.2, color:0xffc27a },
+  { name:'Earth',   x: 1.00*AU, r: 3.3, color:0x7ab8ff },
+  { name:'Mars',    x: 1.52*AU, r: 2.5, color:0xff7b6e },
+  { name:'Jupiter', x: 5.20*AU, r:11.0, color:0xe3c788 },
+  { name:'Saturn',  x: 9.58*AU, r: 9.2, color:0xf6e2a2 },
+  { name:'Uranus',  x:19.20*AU, r: 6.5, color:0xa0e5e5 },
+  { name:'Neptune', x:30.05*AU, r: 6.3, color:0x5bb2ff }
+];
+
+// ------------ Helpers ------------
+function seededRandom(seed) {
+  // Mulberry32
+  return function() {
+    let t = seed += 0x6D2B79F5;
+    t = Math.imul(t ^ t >>> 15, t | 1);
+    t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  }
+}
+const rand = seededRandom(RNG_SEED);
+
+function ring(radius, width, color, opacity=0.25) {
+  const g = new THREE.RingGeometry(radius-width, radius+width, 256);
+  const m = new THREE.MeshBasicMaterial({ color, opacity, transparent:true, side:THREE.DoubleSide });
+  const mesh = new THREE.Mesh(g, m);
+  mesh.rotation.x = -Math.PI/2;
+  return mesh;
+}
+
+function disk(radius, color, opacity=0.08) {
+  const g = new THREE.CircleGeometry(radius, 256);
+  const m = new THREE.MeshBasicMaterial({ color, opacity, transparent:true, side:THREE.DoubleSide });
+  const mesh = new THREE.Mesh(g, m);
+  mesh.rotation.x = -Math.PI/2;
+  return mesh;
+}
+
+function bandPlane(y, color, label) {
+  const g = new THREE.PlaneGeometry(2000, 2000);
+  const m = new THREE.MeshBasicMaterial({ color, transparent:true, opacity:0.08, side:THREE.DoubleSide });
+  const pl = new THREE.Mesh(g, m);
+  pl.position.y = y;
+  pl.name = label;
+  return pl;
+}
+
+function railPlane(x, color, label) {
+  const g = new THREE.PlaneGeometry(2000, 2000);
+  const m = new THREE.MeshBasicMaterial({ color, transparent:true, opacity:0.05, side:THREE.DoubleSide });
+  const pl = new THREE.Mesh(g, m);
+  pl.rotation.y = Math.PI/2;
+  pl.position.x = x;
+  pl.name = label;
+  return pl;
+}
+
+// ------------ Scene content ------------
+// Sun
+const sun = new THREE.Mesh(new THREE.SphereGeometry(12, 48, 32), new THREE.MeshBasicMaterial({ color:0xffe18b }));
+sun.position.set(0,0,0);
+scene.add(sun);
+
+// Planets
+const planetGroup = new THREE.Group();
+for (const p of planets) {
+  const mesh = new THREE.Mesh(new THREE.SphereGeometry(p.r, 32, 16), new THREE.MeshStandardMaterial({ color:p.color, roughness:.6, metalness:.1 }));
+  mesh.position.set(p.x, 0, 0);
+  mesh.userData.name = p.name;
+  planetGroup.add(mesh);
+
+  // Simple orbital ring for readability
+  const orbit = ring(p.x, 0.1, 0x88aadd, 0.15);
+  scene.add(orbit);
+}
+scene.add(planetGroup);
+
+// Asteroid belts (A‑primes → blue torus/rings in the ecliptic)
+const beltGroup = new THREE.Group();
+const mainBelt = ring(2.8*AU, 6, 0x4aa3ff, 0.18); mainBelt.name = 'A_Main';
+const kuiper    = ring(39.5*AU, 8, 0x4aa3ff, 0.10); kuiper.name = 'A_Kuiper';
+beltGroup.add(mainBelt, kuiper);
+scene.add(beltGroup);
+
+// Comet shell (C‑primes → green scattered points in high‑inclination orbits)
+const cometGroup = new THREE.Group();
+const cometGeom = new THREE.SphereGeometry(0.6, 8, 8);
+const cometMat  = new THREE.MeshBasicMaterial({ color:0x69f0ae, transparent:true, opacity:0.85 });
+for (let i=0;i<160;i++){ // symbolic population
+  const m = new THREE.Mesh(cometGeom, cometMat);
+  // sample a random tilted torus-like position
+  const r = (10 + rand()*60) * AU;
+  const theta = rand()*Math.PI*2;
+  const inc = (rand()*0.7+0.2) * Math.PI/2; // tilt
+  const x = Math.cos(theta)*r;
+  const z = Math.sin(theta)*r * Math.cos(inc);
+  const y = Math.sin(inc) * (rand()*60 - 30);
+  m.position.set(x,y,z);
+  cometGroup.add(m);
+}
+scene.add(cometGroup);
+
+// Satellite "moon slots" around the four giants (B‑primes → red)
+const moonGroup = new THREE.Group();
+const moonMat = new THREE.MeshBasicMaterial({ color:0xff6b6b });
+function addMoonCloud(planetName, centerX, planetR, count){
+  const g = new THREE.SphereGeometry(0.8, 8, 8);
+  for (let i=0;i<count;i++){
+    const m = new THREE.Mesh(g, moonMat);
+    const base = planetR + 4 + rand()*22;
+    const theta = rand()*Math.PI*2;
+    const inc = (rand()*0.6 - 0.3); // small inclination scatter
+    const x = centerX + Math.cos(theta)*base;
+    const y = Math.sin(inc)*base*0.35;
+    const z = Math.sin(theta)*base*Math.cos(inc);
+    m.position.set(x,y,z);
+    m.userData.host = planetName;
+    moonGroup.add(m);
+  }
+}
+// allocate counts
+const cJ = Math.round(TOTAL_SATELLITES*dist.Jupiter);
+const cS = Math.round(TOTAL_SATELLITES*dist.Saturn);
+const cU = Math.round(TOTAL_SATELLITES*dist.Uranus);
+const cN = Math.round(TOTAL_SATELLITES*dist.Neptune);
+const cI = Math.max(0, TOTAL_SATELLITES - (cJ+cS+cU+cN));
+
+const J = planets[4], S = planets[5], U = planets[6], N = planets[7];
+addMoonCloud('Jupiter', J.x, J.r, cJ);
+addMoonCloud('Saturn',  S.x, S.r, cS);
+addMoonCloud('Uranus',  U.x, U.r, cU);
+addMoonCloud('Neptune', N.x, N.r, cN);
+// sprinkle some for inner planets as a faint hint
+addMoonCloud('Inner', planets[2].x, planets[2].r, Math.min(cI, 20));
+scene.add(moonGroup);
+
+// η n‑Bands as horizontal planes (golden)
+const bandsGroup = new THREE.Group();
+const etaList = [0.429, 0.456, 0.487];
+etaList.forEach((eta,i)=>{
+  const y = (eta - 0.45) * 400; // spread for visibility
+  const pl = bandPlane(y, 0xffcf5a, `eta_${eta}`);
+  bandsGroup.add(pl);
+});
+scene.add(bandsGroup);
+
+// Rails √2 √5 √17 as vertical planes (magenta)
+const railsGroup = new THREE.Group();
+const rails = [Math.SQRT2, Math.sqrt(5), Math.sqrt(17)];
+rails.forEach((r, i)=>{
+  const x = r * 20; // scaled for visibility
+  const pl = railPlane(x, 0xb388ff, `rail_${i}`);
+  railsGroup.add(pl);
+});
+scene.add(railsGroup);
+
+// Oort cloud (faint sphere)
+const oort = new THREE.Mesh(new THREE.SphereGeometry(100*AU, 64, 32), new THREE.MeshBasicMaterial({ color:0x9bd3ff, transparent:true, opacity:0.02, wireframe:true }));
+scene.add(oort);
+
+// Ground grid
+const grid = new THREE.GridHelper(2000, 40, 0x335, 0x224);
+grid.position.y = -80;
+scene.add(grid);
+
+// ------------ UI toggles ------------
+const $ = (id)=>document.getElementById(id);
+function bindToggle(id, obj) {
+  $(id).addEventListener('change', (e)=>{ obj.visible = e.target.checked; });
+}
+bindToggle('chkA', beltGroup);
+bindToggle('chkB', moonGroup);
+bindToggle('chkC', cometGroup);
+bindToggle('chkNB', bandsGroup);
+bindToggle('chkRails', railsGroup);
+bindToggle('chkOort', oort);
+
+// ------------ Animate ------------
+let t = 0;
+function animate() {
+  requestAnimationFrame(animate);
+  t += 0.002;
+  planetGroup.children.forEach((p, i)=>{
+    if (i<4) return; // keep inner mostly static
+    p.rotation.y += 0.01;
+  });
+  controls.update();
+  renderer.render(scene, camera);
+}
+animate();
+
+// ------------ Notes (for readers inspecting source) ------------
+/*
+SYMBOLIC MAP (Thomas Hofmann · NEXAH):
+- A‑primes (Asteroids) → blue rings (main belt, Kuiper)
+- B‑primes (Planets/Satellites) → red moon-slot clouds (symbolic 1022 total)
+- C‑primes (Comets) → green high-inclination scatter
+- η n‑Bands: {0.429, 0.456, 0.487} as golden horizontal planes
+- Rails: {√2, √5, √17} as magenta vertical planes
+- Gates: 204² = 23³+24³+25³, √432 ≈ 20.785 (engineering dial)
+- Seed 1087 stabilizes the procedural scatter.
+DISCLAIMER: This is a conceptual/educational visualization, not an ephemeris.
+*/
+</script>
+</body>
+</html>

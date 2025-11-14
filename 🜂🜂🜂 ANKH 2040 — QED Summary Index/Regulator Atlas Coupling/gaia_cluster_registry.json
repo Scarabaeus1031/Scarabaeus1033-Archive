@@ -1,0 +1,193 @@
+{
+  "_meta": {
+    "version": "1.0.0",
+    "description": "Registry for GAIA-DR3 star clusters (466\u2013896 ly) mapped into NEXAH helix/GLB layers.",
+    "units": {
+      "distance_ly": "light-years",
+      "distance_pc": "parsecs",
+      "velocity_kms": "km/s",
+      "age_myr": "Myr",
+      "angles": "degrees"
+    }
+  },
+  "schema": {
+    "cluster_id": "string, unique short id (e.g., GAIA-DR3-CL-####)",
+    "name": "string, human name / catalog (e.g., 'IC 2602')",
+    "gaia_dr3_id": "string or null",
+    "coordinates": {
+      "ra_deg": "float",
+      "dec_deg": "float"
+    },
+    "distance": {
+      "ly": "float",
+      "pc": "float"
+    },
+    "kinematics": {
+      "radial_velocity_kms": "float or null",
+      "proper_motion": {
+        "pmra_masyr": "float or null",
+        "pmdec_masyr": "float or null"
+      },
+      "velocity_dispersion_kms": "float or null"
+    },
+    "population": {
+      "age_myr": "float or null",
+      "members_est": "integer or null",
+      "metallicity_feh": "float or null",
+      "extinction_av_mag": "float or null"
+    },
+    "resonance": {
+      "harmonic_band": "string (e.g., 'Blue-\u03a6', 'Gold-\u03c0', 'Magenta-\u03b6')",
+      "frequency_axes": [
+        "list of floats"
+      ],
+      "phi_over_pi_ratio": "float or null",
+      "zeta_index": "float or null",
+      "notes": "string"
+    },
+    "visualization": {
+      "glb_node_name": "string, reference to GLB node",
+      "color_hex": "string '#RRGGBB'",
+      "ring_radius_au": "float or null",
+      "helix_turn_index": "integer or null",
+      "sweep_id": "string, e.g., 'Sweep-2'",
+      "tags": [
+        "list of strings"
+      ]
+    },
+    "links": {
+      "gaia_archive": "url or null",
+      "vizier": "url or null",
+      "paper_doi": "url or null"
+    },
+    "status": {
+      "phase": "enum('draft','verified','published')",
+      "last_update_utc": "ISO 8601 string"
+    }
+  },
+  "clusters": [
+    {
+      "cluster_id": "GAIA-DR3-CL-EX01",
+      "name": "IC 2602 (EXAMPLE_FILL_ME)",
+      "gaia_dr3_id": null,
+      "coordinates": {
+        "ra_deg": null,
+        "dec_deg": null
+      },
+      "distance": {
+        "ly": null,
+        "pc": null
+      },
+      "kinematics": {
+        "radial_velocity_kms": null,
+        "proper_motion": {
+          "pmra_masyr": null,
+          "pmdec_masyr": null
+        },
+        "velocity_dispersion_kms": null
+      },
+      "population": {
+        "age_myr": null,
+        "members_est": null,
+        "metallicity_feh": null,
+        "extinction_av_mag": null
+      },
+      "resonance": {
+        "harmonic_band": "Blue-\u03a6",
+        "frequency_axes": [
+          0.25,
+          0.6,
+          3,
+          5,
+          7,
+          11,
+          13
+        ],
+        "phi_over_pi_ratio": null,
+        "zeta_index": null,
+        "notes": "Placeholder\u2014replace with GAIA-DR3 derived values."
+      },
+      "visualization": {
+        "glb_node_name": "ring_ic2602",
+        "color_hex": "#00CFFF",
+        "ring_radius_au": null,
+        "helix_turn_index": null,
+        "sweep_id": "Sweep-2",
+        "tags": [
+          "template",
+          "cluster"
+        ]
+      },
+      "links": {
+        "gaia_archive": null,
+        "vizier": null,
+        "paper_doi": null
+      },
+      "status": {
+        "phase": "draft",
+        "last_update_utc": "2025-11-02T00:00:00Z"
+      }
+    },
+    {
+      "cluster_id": "GAIA-DR3-CL-EX02",
+      "name": "IC 2391 (EXAMPLE_FILL_ME)",
+      "gaia_dr3_id": null,
+      "coordinates": {
+        "ra_deg": null,
+        "dec_deg": null
+      },
+      "distance": {
+        "ly": null,
+        "pc": null
+      },
+      "kinematics": {
+        "radial_velocity_kms": null,
+        "proper_motion": {
+          "pmra_masyr": null,
+          "pmdec_masyr": null
+        },
+        "velocity_dispersion_kms": null
+      },
+      "population": {
+        "age_myr": null,
+        "members_est": null,
+        "metallicity_feh": null,
+        "extinction_av_mag": null
+      },
+      "resonance": {
+        "harmonic_band": "Gold-\u03c0",
+        "frequency_axes": [
+          0.25,
+          3,
+          5,
+          7,
+          11,
+          13
+        ],
+        "phi_over_pi_ratio": null,
+        "zeta_index": null,
+        "notes": "Placeholder\u2014fit to helix turn where cluster distance \u2208 [466,896] ly."
+      },
+      "visualization": {
+        "glb_node_name": "ring_ic2391",
+        "color_hex": "#FFD400",
+        "ring_radius_au": null,
+        "helix_turn_index": null,
+        "sweep_id": "Sweep-2",
+        "tags": [
+          "template",
+          "cluster"
+        ]
+      },
+      "links": {
+        "gaia_archive": null,
+        "vizier": null,
+        "paper_doi": null
+      },
+      "status": {
+        "phase": "draft",
+        "last_update_utc": "2025-11-02T00:00:00Z"
+      }
+    }
+  ]
+}
