@@ -1,0 +1,79 @@
+{
+  "version": "0.3",
+  "title": "Breathing Crystal \u2014 \u03c0-membranes + I-AN regulator",
+  "geometry": {
+    "membranes": [
+      {
+        "type": "torus",
+        "radius": 1.0,
+        "tube": 0.05,
+        "z": -0.3,
+        "band_center": 0.429
+      },
+      {
+        "type": "torus",
+        "radius": 1.0,
+        "tube": 0.05,
+        "z": 0.0,
+        "band_center": 0.456
+      },
+      {
+        "type": "torus",
+        "radius": 1.0,
+        "tube": 0.05,
+        "z": 0.3,
+        "band_center": 0.487
+      }
+    ],
+    "regulator": {
+      "type": "sphere",
+      "radius": 0.2,
+      "name": "I-AN"
+    },
+    "flows": [
+      {
+        "type": "spiral",
+        "name": "RA",
+        "origin": [
+          0,
+          0,
+          0.6
+        ],
+        "turns": 3
+      },
+      {
+        "type": "spiral",
+        "name": "TH",
+        "origin": [
+          0,
+          0,
+          -0.6
+        ],
+        "turns": 3
+      }
+    ]
+  },
+  "animation": {
+    "timeline_csv": "triad_bands_timeline.csv",
+    "channels": [
+      {
+        "target": "membrane[0].emissive",
+        "source": "comp1"
+      },
+      {
+        "target": "membrane[1].emissive",
+        "source": "comp2"
+      },
+      {
+        "target": "membrane[2].emissive",
+        "source": "comp3"
+      },
+      {
+        "target": "regulator.z",
+        "source": "blend",
+        "scale": 0.1
+      }
+    ]
+  },
+  "note": "Import geometries in Blender/Three.js; bind CSV columns to material/shader uniforms or keyframes."
+}

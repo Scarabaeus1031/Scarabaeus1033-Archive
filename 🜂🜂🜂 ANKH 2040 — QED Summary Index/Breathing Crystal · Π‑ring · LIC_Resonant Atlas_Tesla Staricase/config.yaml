@@ -1,0 +1,82 @@
+# LANG‑ALGO • Unified Language–Prime–Resonance Engine
+# Place this file at the repository root as `config.yaml`.
+
+engine:
+  sample_rate: 48000          # Hz for audio synthesis
+  f0: 432                     # base reference (use 440 if preferred)
+  tuning_system: "pi_ring"    # π‑Ring with η windows
+  eta_bands: [0.429, 0.456, 0.487]  # Triad bands (η1, η2, η3)
+
+  breath:                     # Breathing Crystal timing
+    breath_seconds: 6         # ≈1 breath
+    phase_breaths: 7          # ≈42 s phase
+    sequence: [7, 9, 12, 17]  # crystalline closure
+
+  modulation:
+    am_hz: 1.2                # slow amplitude modulation (Hz)
+    fm_cents: 15              # subtle frequency modulation depth
+    phase_lock_max_deg: 45    # phase error ceiling for lock-in
+
+rails:
+  primary: "sqrt5"            # √5 rail (A/O gravity)
+  secondary: "sqrt2"          # √2 rail (E/I air)
+  step_factors: [63, 65, 68]  # ×63=7·3², ×65=5·13, ×68=2²·17
+
+primes:
+  grid:
+    base: 20                  # vendessimal columns
+    range: [1, 3000]          # inclusive scan range
+    mod_classes: [19, 29]     # residue coloring
+  overlays:
+    twin_primes: true         # highlight twin pairs
+    euler_41:
+      enabled: true
+      n_max: 40               # first octave of n^2+n+41
+    threshold_1061_1064: true # inset around 1061–1064 (2^3·7·19)
+    triad_bands_sigma: 0.08   # σ for η‑band soft edges (0…1)
+  muon_prime:
+    enabled: true
+    coherence_threshold: 0.85 # flag low-coherence stripes
+
+language:
+  lic_overlay: true           # Light·Information·Consciousness overlay
+  phoneme_model: "PHERONOM-v1"
+  vowel_windows:              # map vowels to η windows
+    A: 0.487
+    E: 0.456
+    I: 0.456
+    O: 0.429
+    U: 0.429
+  consonant_gates:            # minimal gate roles
+    T: "impulse"
+    N: "binding"
+    M: "form"
+    D: "mirror"
+    L: "bridge"
+  quadrants:                  # relational field register
+    MOCK: ["M","O","CK"]
+    TANJAD: ["T","A","N","JAD"]
+    DOONA: ["D","OO","NA"]
+    NEALA: ["N","E","A","LA"]
+
+visualization:
+  theme: "dark-golden"
+  dpi: 200
+  grid_labels: true
+  save:
+    dir: "out/"
+    filenames:
+      grid: "vendessimal_prime_grid.png"
+      twin: "vendessimal_twin_overlay.png"
+      inset: "prime_threshold_1061_1064.png"
+      lic: "LIC_overlay.png"
+
+export:
+  audio:
+    enabled: false            # set true to render wave experiments
+    dir: "out/audio/"
+    format: "wav"
+
+reproducibility:
+  seed: 1033
+  version: "LANG-ALGO v0.1.0"
