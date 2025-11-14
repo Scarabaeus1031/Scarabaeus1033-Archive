@@ -1,0 +1,23 @@
+body,class,category,flavor_id,phi_value,notes
+Mercury,planet,rock,2,1.45,stony; low volatiles
+Venus,planet,rock/atmo,3,1.52,dense CO2 atmo; thermal extreme
+Earth,planet,rock/ocean,2,1.45,anchor; mixed surface
+Mars,planet,rock/ice,1,1.38,polar ice; thin atmo
+Jupiter,planet,gas-giant,5,1.618,high-energy; magnetosphere
+Saturn,planet,gas-giant/ring,5,1.618,rings; grey membrane context
+Uranus,planet,ice-giant,4,1.59,tilt ~98°; upper membrane
+Neptune,planet,ice-giant,4,1.59,outer blue; N bridge
+Pluto,dwarf,N2/CH4 ice,1,1.38,outer ice; binary with Charon
+Charon,moon,water/ice rock,1,1.38,binary with Pluto
+Arrokoth,kbo,contact-binary,1,1.38,cold classical; binary morphology
+Luna,moon,rock,2,1.45,low albedo; basaltic plains
+Io,moon,volcanic/fire,5,1.618,tidal heating; sulfur volcanism
+Europa,moon,ice/ocean,1,1.38,ocean under ice
+Ganymede,moon,rock/ice,2,1.45,largest moon; intrinsic field
+Callisto,moon,ice/rock,1,1.38,ancient surface
+Titan,moon,N2/organics,4,1.59,"thick N2; membrane exemplar | updated: Grey Elevator → F4 (kite, methane-energy interface)"
+Enceladus,moon,ice/geyser,1,1.38,plumes; ocean
+Triton,moon,N2/ice,1,1.38,retrograde; geysers
+Rhea,moon,ice,1,1.38,bright; ice
+Phoebe,moon,dark/irregular,2,1.45,captured? dark surface
+Miranda,moon,ice/tectonic,3,1.52,extreme geology; interface

@@ -1,0 +1,10 @@
+label,frequency_hz,rail_group,note
+Algo Rail,2.6,Primary,Lower base rail
+Olgo Rail,24.1,Primary,Upper base rail
+Gate Lower,12.6,Gate,Lower gate bound
+Gate Upper,13.7,Gate,Upper gate bound
+VI Lower,17.8,VI Regulator,Lower VI rail
+VI Upper,18.9,VI Regulator,Upper VI rail
+Anchor 1836,,Temporal Anchor,Mass ratio motif
+Anchor 1938,,Temporal Anchor,Temporal rung
+Anchor 2040,,Temporal Anchor,Temporal rung
