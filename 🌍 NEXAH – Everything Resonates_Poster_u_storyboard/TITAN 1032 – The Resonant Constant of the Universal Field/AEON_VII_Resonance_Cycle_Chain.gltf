@@ -1,0 +1,96 @@
+{
+  "asset": {
+    "version": "2.0",
+    "generator": "NEXAH/AEON-VII-Builder"
+  },
+  "scene": 0,
+  "scenes": [
+    {
+      "nodes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "name": "Gate1_33_Golden Hinge",
+      "translation": [
+        1.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "name": "Gate2_41_Gaia Pre\u2011Lock",
+      "translation": [
+        0.766044,
+        0.642788,
+        0.0
+      ]
+    },
+    {
+      "name": "Gate3_42_Tri\u2011Phase Lock",
+      "translation": [
+        0.173648,
+        0.984808,
+        0.0
+      ]
+    },
+    {
+      "name": "Gate4_74_Solar Reflective Lock",
+      "translation": [
+        -0.5,
+        0.866025,
+        0.0
+      ]
+    },
+    {
+      "name": "Gate5_75_Penta\u2011Tri Phase",
+      "translation": [
+        -0.939693,
+        0.34202,
+        0.0
+      ]
+    },
+    {
+      "name": "Gate6_77_Twin\u20117 Cross\u2011Lock",
+      "translation": [
+        -0.939693,
+        -0.34202,
+        0.0
+      ]
+    },
+    {
+      "name": "Gate7_28_Seasonal Plane",
+      "translation": [
+        -0.5,
+        -0.866025,
+        0.0
+      ]
+    },
+    {
+      "name": "Gate8_9_Breath Closure",
+      "translation": [
+        0.173648,
+        -0.984808,
+        0.0
+      ]
+    },
+    {
+      "name": "Gate9_79_Aurum Node",
+      "translation": [
+        0.766044,
+        -0.642788,
+        0.0
+      ]
+    }
+  ]
+}
