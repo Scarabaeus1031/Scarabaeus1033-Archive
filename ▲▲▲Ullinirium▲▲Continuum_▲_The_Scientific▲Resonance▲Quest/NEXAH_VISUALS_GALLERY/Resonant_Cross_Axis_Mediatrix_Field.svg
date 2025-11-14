@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <rect x="0" y="0" width="1200" height="800" fill="white"/>
+  <!-- Central circle (Mediatrix) -->
+  <circle cx="600" cy="400" r="70" fill="none" stroke="black" stroke-width="2"/>
+  <!-- Horizontal axis -->
+  <line x1="150" y1="400" x2="1050" y2="400" stroke="black" stroke-width="3"/>
+  <text x="220" y="380" font-family="Arial" font-size="20">37 — Memory</text>
+  <text x="520" y="380" font-family="Arial" font-size="20">63 — Machine</text>
+  <text x="720" y="380" font-family="Arial" font-size="20">83 — Body</text>
+  <text x="940" y="380" font-family="Arial" font-size="20">107 — Spirit</text>
+  <!-- Vertical axis (outer triad) -->
+  <line x1="600" y1="100" x2="600" y2="700" stroke="black" stroke-width="3"/>
+  <text x="620" y="140" font-family="Arial" font-size="20">N — Neptune (Source)</text>
+  <text x="620" y="410" font-family="Arial" font-size="20">U — Uranus (Regulator)</text>
+  <text x="620" y="680" font-family="Arial" font-size="20">A — Arrokoth (Portal)</text>
+  <!-- Greyspace shading -->
+  <ellipse cx="600" cy="400" rx="300" ry="140" fill="none" stroke="black" stroke-dasharray="6,6"/>
+  <text x="520" y="430" font-family="Arial" font-size="18">Mediatrix / Greyspace</text>
+</svg>

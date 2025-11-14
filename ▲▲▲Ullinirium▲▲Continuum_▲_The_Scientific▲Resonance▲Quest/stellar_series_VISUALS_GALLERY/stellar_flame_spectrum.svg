@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="1200" height="360" viewBox="0 0 1200 360" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradient from Sirius (blue-white) -> P (green) -> Vega (icy cyan) -->
+    <linearGradient id="flameGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#bcd7ff"/>   <!-- blue-white (Sirius A) -->
+      <stop offset="35%" stop-color="#6aa9ff"/>  <!-- blue -->
+      <stop offset="50%" stop-color="#42ff7a"/>  <!-- P (green balance) -->
+      <stop offset="80%" stop-color="#6ae8ff"/>  <!-- cyan -->
+      <stop offset="100%" stop-color="#c8fbff"/> <!-- icy cyan (Vega) -->
+    </linearGradient>
+
+    <!-- Thin glow for resonance flow -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="1200" height="360" fill="#0b1424"/>
+
+  <!-- Title -->
+  <text x="50%" y="48" text-anchor="middle" fill="#e6f0ff" font-family="Inter, Arial, sans-serif" font-size="28">
+    STELLAR FLAME SPECTRUM — Sirius → P → Vega
+  </text>
+
+  <!-- Gradient bar -->
+  <rect x="80" y="110" width="1040" height="90" fill="url(#flameGrad)" rx="10"/>
+
+  <!-- Resonance flow line (white, subtle glow) -->
+  <line x1="80" y1="178" x2="1120" y2="178" stroke="#ffffff" stroke-opacity="0.7" stroke-width="1.5" filter="url(#glow)"/>
+
+  <!-- Tick marks (approximate temperature markers / qualitative only) -->
+  <g stroke="#e6f0ff" stroke-width="1">
+    <line x1="80" y1="206" x2="80" y2="226"/>
+    <line x1="360" y1="206" x2="360" y2="226"/>
+    <line x1="640" y1="206" x2="640" y2="226"/>
+    <line x1="900" y1="206" x2="900" y2="226"/>
+    <line x1="1120" y1="206" x2="1120" y2="226"/>
+  </g>
+
+  <!-- Tick labels -->
+  <g fill="#cfe2ff" font-family="Inter, Arial, sans-serif" font-size="16">
+    <text x="80" y="248" text-anchor="middle">~10,000 K</text>
+    <text x="360" y="248" text-anchor="middle">~8,000 K</text>
+    <text x="640" y="248" text-anchor="middle">P (≈530 nm)</text>
+    <text x="900" y="248" text-anchor="middle">~6,500 K</text>
+    <text x="1120" y="248" text-anchor="middle">~6,000 K</text>
+  </g>
+
+  <!-- End labels -->
+  <text x="80" y="95" text-anchor="start" fill="#bcd7ff" font-family="Inter, Arial, sans-serif" font-size="18">Sirius</text>
+  <text x="1120" y="95" text-anchor="end" fill="#c8fbff" font-family="Inter, Arial, sans-serif" font-size="18">Vega</text>
+
+  <!-- Math/field markers -->
+  <g fill="#e6f0ff" font-family="Inter, Arial, sans-serif">
+    <text x="640" y="290" text-anchor="middle" font-size="18">φ (golden) · γ (Euler) — resonance stabilizers</text>
+  </g>
+
+  <!-- Legend bullets -->
+  <g fill="#b7c7ff" font-family="Inter, Arial, sans-serif" font-size="15">
+    <text x="80" y="320">• Left: Fire/Blue — high-energy source (Sirius A/B)</text>
+    <text x="480" y="320">• Center: P/Green — balance/mediatrix (elevator node)</text>
+    <text x="900" y="320">• Right: Ice/Cyan — mirror/cooling (Vega)</text>
+  </g>
+</svg>
