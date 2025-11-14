@@ -1,0 +1,34 @@
+{
+  "gh_layer": {
+    "id": 197,
+    "label": "GH Resonance",
+    "bridge": "CCC\u2194KKK",
+    "fields": {
+      "ccc_field": "Light/Consciousness",
+      "kkk_field": "Matter/Density"
+    },
+    "axis_map": {
+      "Axis-CCC": {
+        "example_group": "Inuit",
+        "color_hint": "orange\u2192green"
+      },
+      "Axis-TRANS": {
+        "example_group": "Gallic",
+        "color_hint": "green\u2192orange"
+      },
+      "Axis-KKK": {
+        "example_group": "Norse",
+        "color_hint": "orange"
+      },
+      "Axis-CORE": {
+        "example_group": "Regular",
+        "color_hint": "blue"
+      }
+    },
+    "qspace_params": {
+      "phi": 1.61803398875,
+      "GH": 197,
+      "Q": "<set later>"
+    }
+  }
+}

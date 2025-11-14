@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1404px" height="1984px" viewBox="0 0 1404 1984">
+  <rect x="0" y="0" width="1404" height="1984" fill="#0b0b0f"/>
+  <text x="702.0" y="110" fill="#eaeaea" font-family="Inter,Arial,sans-serif" font-size="44" text-anchor="middle" font-weight="700">CCC↔KKK Bridge — GH Resonance Layer (schematic)</text>
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" in="SourceGraphic" result="blur1"/>
+      <feGaussianBlur stdDeviation="14" in="SourceGraphic" result="blur2"/>
+      <feMerge>
+        <feMergeNode in="blur2"/>
+        <feMergeNode in="blur1"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <ellipse cx="702.0" cy="694.4" rx="603.72" ry="317.44" fill="none" stroke="#d8971a" stroke-width="8" opacity="1.0"/>
+  <ellipse cx="702.0" cy="694.4" rx="463.32000000000005" ry="218.24" fill="none" stroke="#1fad83" stroke-width="7" opacity="0.95"/>
+  <text x="702.0" y="436.48" fill="#d8b273" font-family="Inter,Arial" font-size="28" text-anchor="middle">ccc-field (Light / Consciousness)</text>
+  <ellipse cx="702.0" cy="1468.16" rx="603.72" ry="317.44" fill="none" stroke="#58a6ff" stroke-width="8" opacity="0.9"/>
+  <ellipse cx="702.0" cy="1468.16" rx="449.28000000000003" ry="218.24" fill="none" stroke="#e9d84f" stroke-width="7" opacity="0.85"/>
+  <text x="702.0" y="1745.92" fill="#7fb8ff" font-family="Inter,Arial" font-size="28" text-anchor="middle">kkk-field (Matter / Density)</text>
+  <line x1="308.88" y1="1031.68" x2="1095.1200000000001" y2="1031.68" stroke="#6aa9ff" stroke-width="10"/>
+  <line x1="308.88" y1="1039.68" x2="1095.1200000000001" y2="1039.68" stroke="#ff8a3a" stroke-width="10"/>
+  <path d="M 308.88 1039.68 a 40 40 0 0 1 0 -80" fill="none" stroke="#cc7fab" stroke-width="10"/>
+  <path d="M 1095.1200000000001 959.6800000000001 a 40 40 0 0 1 0 80" fill="none" stroke="#0b0b0f" stroke-width="14"/>
+  <text x="702.0" y="1015.6800000000001" fill="#eaeaea" font-family="Inter,Arial" font-size="30" text-anchor="middle" font-weight="600">GH RESONANCE</text>
+  <text x="702.0" y="1065.68" fill="#cfcfcf" font-family="Inter,Arial" font-size="24" text-anchor="middle">Φ · 197 · Q</text>
+  <circle cx="182.52" cy="993.8399999999999" r="26" fill="#0b0b0f" stroke="#ffffff" stroke-width="4"/>
+  <text x="182.52" y="1001.8399999999999" fill="#ffffff" font-family="Inter,Arial" font-size="22" text-anchor="middle" font-weight="700">GH₁</text>
+  <circle cx="1221.48" cy="993.8399999999999" r="26" fill="#0b0b0f" stroke="#ffffff" stroke-width="4"/>
+  <text x="1221.48" y="1001.8399999999999" fill="#ffffff" font-family="Inter,Arial" font-size="22" text-anchor="middle" font-weight="700">GH₄</text>
+  <circle cx="182.52" cy="1168.72" r="26" fill="#0b0b0f" stroke="#ffffff" stroke-width="4"/>
+  <text x="182.52" y="1176.72" fill="#ffffff" font-family="Inter,Arial" font-size="22" text-anchor="middle" font-weight="700">GH₅</text>
+  <circle cx="1221.48" cy="1168.72" r="26" fill="#0b0b0f" stroke="#ffffff" stroke-width="4"/>
+  <text x="1221.48" y="1176.72" fill="#ffffff" font-family="Inter,Arial" font-size="22" text-anchor="middle" font-weight="700">GH₄₂</text>
+  <circle cx="702.0" cy="694.4" r="60" fill="#7ffcff" opacity="0.22" filter="url(#glow)"/>
+  <circle cx="702.0" cy="694.4" r="32" fill="#FFFFFF" opacity="0.95"/>
+  <circle cx="702.0" cy="694.4" r="32" fill="none" stroke="#7ffcff" stroke-width="3" opacity="0.85"/>
+  <circle cx="702.0" cy="1468.16" r="42" fill="none" stroke="#7ffcff" stroke-width="3" opacity="0.35" filter="url(#glow)"/>
+</svg>

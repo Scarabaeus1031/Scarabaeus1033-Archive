@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1404px" height="1984px" viewBox="0 0 1404 1984">
+  <defs>
+    <linearGradient id="grad_bw" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#111"/>
+      <stop offset="100%" stop-color="#000"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="1404" height="1984" fill="url(#grad_bw)"/>
+  <text x="702.0" y="110" fill="#f0f0f0" font-family="Inter, Arial, sans-serif" font-size="44" text-anchor="middle" font-weight="700">NEXAH GH197 — URSA BRIDGE</text>
+  <ellipse cx="702.0" cy="694.4" rx="603.72" ry="317.44" fill="none" stroke="#e6e6e6" stroke-width="8" opacity="1.0"/>
+  <ellipse cx="702.0" cy="1468.16" rx="603.72" ry="317.44" fill="none" stroke="#bbbbbb" stroke-width="8" opacity="1.0"/>
+  <line x1="280.8" y1="1031.68" x2="1123.2" y2="1031.68" stroke="#e6e6e6" stroke-width="10"/>
+  <text x="702.0" y="1021.6800000000001" fill="#f0f0f0" font-family="Inter, Arial, sans-serif" font-size="30" text-anchor="middle" font-weight="600">GH RESONANCE — Φ·197·Q</text>
+  <circle cx="702.0" cy="694.4" r="60" fill="#cccccc" opacity="0.25"/>
+  <circle cx="702.0" cy="694.4" r="34" fill="#fafafa" opacity="0.95"/>
+</svg>

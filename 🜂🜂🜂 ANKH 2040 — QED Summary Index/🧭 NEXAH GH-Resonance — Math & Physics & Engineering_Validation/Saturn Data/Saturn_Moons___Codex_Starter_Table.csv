@@ -1,0 +1,34 @@
+index_roman,name,group_key,codex_mapping,mean_diameter_km,dimensions_km,mass_approx_kg,semi_major_axis_km,orbital_period_days,inclination_deg,eccentricity,notes,discovery_year,publication_year,discoverer
+I,Mimas,♠ Major,—,396.4,416×393×381,,186000,0.94242,1.6,0.02,—,1789,1789,Herschel
+II,Enceladus,♠ Major,—,504.2,513×503×497,,238400,1.37022,0.0,0.005,Generates the E ring,1789,1789,Herschel
+III,Tethys,♠ Major,—,1062.2,1077×1057×1053,,295000,1.8878,1.1,0.001,—,1684,1684,Cassini
+IV,Dione,♠ Major,—,1122.8,1128×1123×1119,,377700,2.73692,0.0,0.002,—,1684,1684,Cassini
+V,Rhea,♠ Major,—,1527.6,1530×1526×1525,,527200,4.5175,0.3,0.001,—,1672,1673,Cassini
+VI,Titan,♠ Major,—,5149.46,5149×5149×5150,,1221900,15.9454,0.3,0.029,—,1655,1656,Huygens
+VIII,Iapetus,♠ Major,—,1468.6,1491×1491×1424,,3561700,79.331,7.6,0.028,—,1671,1673,Cassini
+X,Janus,Small regular,—,179.0,203×185×153,,151500,0.69735,0.2,0.007,co-orbital with Epimetheus,1966,1967,Dollfus
+XI,Epimetheus,Small regular,—,116.2,130×114×106,,151400,0.69701,0.3,0.02,co-orbital with Janus,1966,1967,Fountain & Larson
+XV,Atlas,Small regular,—,30.2,41×35×19,,137700,0.6046,0.0,0.001,—,1980,1980,Voyager 1
+XVI,Prometheus,Small regular,—,86.2,137×81×56,,139400,0.61588,0.0,0.002,F Ring shepherd,1980,1980,Voyager 1
+XVII,Pandora,Small regular,—,81.4,104×81×64,,141700,0.63137,0.0,0.004,—,1980,1980,Voyager 1
+XVIII,Pan,Small regular,—,28.2,35×28×21,,133600,0.57505,0.0,0.0,in Encke Division,1990,1990,Showalter
+XXXV,Daphnis,Small regular,—,7.6,9.8×8.4×5.6,,136500,0.59408,0.0,0.0,in Keeler Gap,2005,2005,Cassini
+LIII,Aegaeon,Small regular,—,0.66,1.4×0.5×0.4,,167500,0.80812,0.0,0.0,G Ring moonlet,2008,2009,Cassini
+VII,Hyperion,Irregular (unique),—,270.0,360×266×205,,1481500,21.2767,0.6,0.105,in 4:3 resonance with Titan,1848,1848,Bond & Lassell
+IX,Phoebe,‡ Norse,G^2,213.0,219×217×204,,12929400,-550.3,175.2,0.164,Norse group (Phoebe),1898,1899,Pickering
+XX,Paaliaq,♦ Inuit,Electron,25.0,≈25,,14997900,686.94,48.5,0.378,Inuit group,2000,2000,Gladman et al.
+XXII,Ijiraq,♦ Inuit,Electron,13.0,≈13,,11344600,451.43,49.2,0.293,Inuit group (Kiviuq),2000,2000,Gladman et al.
+XXIV,Kiviuq,♦ Inuit,Electron,17.0,≈17,,11307500,449.13,48.0,0.275,Inuit group (Kiviuq),2000,2000,Gladman et al.
+XXIX,Siarnaq,♦ Inuit,Electron,39.3,≈32,,17881100,895.58,47.8,0.309,Inuit group (Siarnaq),2000,2000,Gladman et al.
+LII,Tarqeq,♦ Inuit,Electron,7.0,≈7,,17751000,884.99,48.7,0.143,Inuit group (Siarnaq),2007,2007,Sheppard et al.
+XXI,Tarvos,♣ Gallic,—,15.0,≈2.1,,18215600,926.43,37.8,0.522,Gallic group,2000,2000,Gladman et al.
+XXVI,Albiorix,♣ Gallic,—,28.6,≈12,,16329100,783.46,36.8,0.482,Gallic group,2000,2000,Holman
+XXVIII,Erriapus,♣ Gallic,—,10.0,≈0.95,,17507000,871.09,37.1,0.476,Gallic group,2000,2000,Gladman et al.
+LX,S/2004 S 29,♣ Gallic,—,5.0,≈0.065,,17064100,837.78,38.6,0.485,Gallic group,2004,2019,Sheppard et al.
+S/2007 S 8,S/2007 S 8,♣ Gallic,—,4.0,≈0.034,,17049000,836.9,36.2,0.49,Gallic group,2007,2023,Sheppard et al.
+XIX,Ymir,‡ Norse,G^2,19.0,≈5.6,,22954500,-1315.08,172.3,0.338,Norse group (Phoebe),2000,2000,Gladman et al.
+XXIII,Suttungr,‡ Norse,G^2,7.0,≈0.27,,19392000,-1016.7,175.7,0.116,Norse group,2000,2000,Gladman et al.
+XXV,Mundilfari,‡ Norse,G^2,7.0,≈0.27,,18588100,-952.86,167.1,0.212,Norse group (Mundilfari),2000,2000,Gladman et al.
+XXVII,Skathi,‡ Norse,G^2,8.0,≈0.38,,15575400,-728.09,151.6,0.281,Norse group (low-inclination),2000,2000,Gladman et al.
+XXX,Thrymr,‡ Norse,G^2,8.0,≈0.38,,20330900,-1092.17,175.0,0.467,Norse group (Phoebe),2000,2000,Gladman et al.
+XXXI,Narvi,‡ Norse,G^2,7.0,≈0.27,,19285600,-1003.95,142.2,0.441,Norse group (low-inclination),2003,2003,Sheppard et al.

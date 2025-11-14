@@ -1,0 +1,10 @@
+name,roman_sym,radius_km,a_km,P_days,incl_deg,ecc,disc_year,class,group_key,force_code,axis_id,prime_group_flag,gh_resonance_id,q_spin,neon_phase
+Mimas,♠,198.2,186000,0.94242,1.6,0.02,1789,major_spheroidal,Regular,—,Axis-CORE,—,197,,
+Enceladus,♠,252.1,238400,1.37022,0.0,0.005,1789,major_spheroidal,Regular,—,Axis-CORE,—,197,,
+Tethys,♠,531.1,295000,1.8878,1.1,0.001,1684,major_spheroidal,Regular,—,Axis-CORE,—,197,,
+Dione,♠,561.4,377700,2.73692,0.0,0.002,1684,major_spheroidal,Regular,—,Axis-CORE,—,197,,
+Rhea,♠,763.8,527200,4.5175,0.3,0.001,1672,major_spheroidal,Regular,—,Axis-CORE,—,197,,
+Titan,♠,2574.73,1221900,15.9454,0.3,0.029,1655,major_spheroidal,Regular,—,Axis-CORE,—,197,,
+Iapetus,♠,734.5,3561700,79.331,7.6,0.028,1671,major_spheroidal,Regular,—,Axis-CORE,—,197,,
+Janus,X,89.5,151500,0.69735,0.2,0.007,1966,small_regular,Regular,—,Axis-CORE,—,197,,
+Epimetheus,XI,58.1,151400,0.69701,0.3,0.02,1966,small_regular,Regular,—,Axis-CORE,—,197,,

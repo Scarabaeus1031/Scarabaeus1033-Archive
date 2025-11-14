@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1000" viewBox="0 0 1400 1000">
+  <defs>
+    <!-- Gradient for the transition band (green → yellow → orange) -->
+    <linearGradient id="bananaOG" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1e9e63"/>
+      <stop offset="50%" stop-color="#f4e04d"/>
+      <stop offset="100%" stop-color="#f28c28"/>
+    </linearGradient>
+    <!-- Label circle style -->
+    <style>
+      .fieldLabel { font-family: 'Inter', 'Helvetica', Arial, sans-serif; font-size: 26px; fill: #444; }
+      .ghLabel { font-family: 'Inter', 'Helvetica', Arial, sans-serif; font-size: 24px; font-weight: 700; fill: #000; }
+      .title { font-family: 'Inter', 'Helvetica', Arial, sans-serif; font-size: 44px; font-weight: 700; fill: #222; }
+      .subtitle { font-family: 'Inter', 'Helvetica', Arial, sans-serif; font-size: 26px; fill: #555; }
+      .centerText { font-family: 'Inter', 'Helvetica', Arial, sans-serif; font-size: 36px; font-weight: 700; fill: #333; }
+      .centerSub { font-family: 'Inter', 'Helvetica', Arial, sans-serif; font-size: 26px; fill: #333; }
+    </style>
+  </defs>
+
+  <!-- Title -->
+  <text x="700.0" y="70" text-anchor="middle" class="title">CCC↔KKK Bridge — GH Resonance Layer (schematic)</text>
+
+  <!-- Top (CCC) field outer ellipse (orange) -->
+  <ellipse cx="700.0" cy="250" rx="600" ry="170" fill="none" stroke="#f28c28" stroke-width="10"/>
+  <!-- Top inner ellipse (green) -->
+  <ellipse cx="700.0" cy="250" rx="420" ry="120" fill="none" stroke="#1e9e63" stroke-width="8"/>
+
+  <!-- CCC label -->
+  <text x="700.0" y="120" text-anchor="middle" class="subtitle" fill="#f28c28">ccc-field (Light / Consciousness)</text>
+
+  <!-- GH markers on top -->
+  <circle cx="190" cy="330" r="34" fill="#fff" stroke="#000" stroke-width="4"/>
+  <text x="190" y="336" text-anchor="middle" class="ghLabel">GH₁</text>
+  <circle cx="1210" cy="330" r="34" fill="#fff" stroke="#000" stroke-width="4"/>
+  <text x="1210" y="336" text-anchor="middle" class="ghLabel">GH₄</text>
+
+  <!-- Transition band (banana OG) -->
+  <rect x="240" y="430" width="920" height="90" rx="8" ry="8" fill="url(#bananaOG)" opacity="0.85"/>
+  <!-- Top and bottom edges of the resonance channel -->
+  <line x1="240" y1="430" x2="1160" y2="430" stroke="#2a78c7" stroke-width="6"/>
+  <line x1="240" y1="520" x2="1160" y2="520" stroke="#f28c28" stroke-width="6"/>
+
+  <!-- Side "caps" -->
+  <path d="M 240 430 A 55 45 0 0 0 240 520" fill="none" stroke="#cc6ea8" stroke-width="10"/>
+  <path d="M 1160 430 A 55 45 0 0 1 1160 520" fill="none" stroke="#000000" stroke-width="10"/>
+
+  <!-- Center labels -->
+  <text x="700.0" y="488" text-anchor="middle" class="centerText">GH RESONANCE</text>
+  <text x="700.0" y="528" text-anchor="middle" class="centerSub">Φ 197 · Q</text>
+
+  <!-- Bottom (KKK) field outer ellipse (blue) -->
+  <ellipse cx="700.0" cy="760" rx="600" ry="170" fill="none" stroke="#2a78c7" stroke-width="10"/>
+  <!-- Bottom inner ellipse (yellow) -->
+  <ellipse cx="700.0" cy="760" rx="420" ry="120" fill="none" stroke="#f4e04d" stroke-width="8"/>
+
+  <!-- KKK label -->
+  <text x="700.0" y="930" text-anchor="middle" class="subtitle" fill="#2a78c7">kkk-field (Matter / Density)</text>
+
+  <!-- GH markers on bottom -->
+  <circle cx="240" cy="690" r="34" fill="#fff" stroke="#000" stroke-width="4"/>
+  <text x="240" y="696" text-anchor="middle" class="ghLabel">GH₅</text>
+  <circle cx="1160" cy="690" r="34" fill="#fff" stroke="#000" stroke-width="4"/>
+  <text x="1160" y="696" text-anchor="middle" class="ghLabel">GH₄₂</text>
+
+</svg>
