@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Atrium L Shell · 63–64 Split · Zeta 0.429 (v2)</title>
+<style>
+  :root{
+    --bg:#0b2742;
+    --grid:#1a3f63;
+    --ink:#f6e6b0;
+    --ink-dim:#cfc298;
+    --gold:#f7d064;
+    --cyan:#68e5ff;
+    --pink:#ff6fb9;
+    --yel:#ffd54d;
+    --blue:#68a0ff;
+    --green:#6ef2a6;
+    --orange:#ffa86e;
+    --red:#ff6a6a;
+    --muted:#678;
+  }
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;}
+  .wrap{display:grid;grid-template-columns:320px 1fr;height:100%;}
+  .panel{
+    padding:16px 14px;
+    border-right:1px solid #123454;
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  }
+  .panel h1{font-size:18px;margin:4px 0 10px 0;letter-spacing:.08em}
+  .panel .small{font-size:12px;color:var(--ink-dim);line-height:1.35}
+  .toggle{display:flex;align-items:center;gap:8px;margin:8px 0}
+  .toggle input{accent-color:var(--gold);width:16px;height:16px}
+  .legend {margin-top:10px;border-top:1px dashed #35577a;padding-top:10px}
+  .legend div{display:flex;align-items:center;gap:8px;margin:4px 0;font-size:12px;color:var(--ink-dim)}
+  .sw{width:14px;height:3px;border-radius:2px;background:var(--ink)}
+  .sw.cyan{background:var(--cyan)} .sw.pink{background:var(--pink)} .sw.yel{background:var(--yel)}
+  .sw.blue{background:var(--blue)} .sw.green{background:var(--green)} .sw.orange{background:var(--orange)}
+  .sw.red{background:var(--red)} .sw.muted{background:var(--muted)}
+  svg{width:100%;height:100%;display:block}
+  .note{font-size:12px;color:var(--ink-dim)}
+  .kbd{padding:.1rem .35rem;border:1px solid #345a82;border-radius:4px;background:#092034;font-size:12px}
+  .titlebar{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+  .badge{font-size:11px;color:#0b2742;background:var(--gold);padding:.15rem .4rem;border-radius:999px;margin-left:6px}
+  .footer{position:absolute;bottom:8px;left:12px;font-size:11px;color:var(--ink-dim)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="panel">
+    <div class="titlebar">
+      <h1>ATRIUM · L‑SHELL · ZETA 0.429</h1>
+      <div class="badge">v2</div>
+    </div>
+    <div class="small">Interactive field map of the 63 / 64 split (β‑gate), η‑bands, v‑rails (√2, √5, √17), LIC/LY overlays, and engineering markers: root‑432, 204² Gate, 390° offset.</div>
+
+    <div class="toggle"><input type="checkbox" id="gGrid" checked/><label for="gGrid">Blueprint grid</label></div>
+    <div class="toggle"><input type="checkbox" id="gShell" checked/><label for="gShell">Atrium L‑Shell</label></div>
+    <div class="toggle"><input type="checkbox" id="gZeta" checked/><label for="gZeta">Zeta line η ≈ 0.429</label></div>
+    <div class="toggle"><input type="checkbox" id="gSplit" checked/><label for="gSplit">63 / 64 split</label></div>
+    <div class="toggle"><input type="checkbox" id="gVRails" checked/><label for="gVRails">v‑Rails √2 · √5 · √17</label></div>
+    <div class="toggle"><input type="checkbox" id="gNBands" checked/><label for="gNBands">n‑Bands {0.429, 0.456, 0.487}</label></div>
+    <div class="toggle"><input type="checkbox" id="gRoot432" checked/><label for="gRoot432">root‑432 marker (≈ 20.785)</label></div>
+    <div class="toggle"><input type="checkbox" id="gGate204" checked/><label for="gGate204">204² Gate (23³+24³+25³)</label></div>
+    <div class="toggle"><input type="checkbox" id="g390" checked/><label for="g390">390° offset ring</label></div>
+    <div class="toggle"><input type="checkbox" id="gLIC" checked/><label for="gLIC">LIC ⇄ LY overlay</label></div>
+
+    <div class="legend">
+      <div><span class="sw yel"></span>η‑bands (n)</div>
+      <div><span class="sw cyan"></span>v‑rails (√2, √5, √17)</div>
+      <div><span class="sw pink"></span>Zeta 0.429</div>
+      <div><span class="sw blue"></span>root‑432</div>
+      <div><span class="sw orange"></span>204² Gate</div>
+      <div><span class="sw green"></span>LIC ➜ LY threading</div>
+      <div><span class="sw red"></span>390° offset</div>
+    </div>
+
+    <p class="note">Tip: press <span class="kbd">G</span> (grid), <span class="kbd">R</span> (rails), <span class="kbd">N</span> (n‑bands), <span class="kbd">L</span> (LIC), <span class="kbd">O</span> (offset) to toggle quickly.</p>
+  </div>
+
+  <svg viewBox="0 0 1200 800" role="img" aria-label="Atrium L Shell – Zeta 0.429 Field">
+    <!-- defs -->
+    <defs>
+      <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+        <rect width="32" height="32" fill="none" stroke="#153858" stroke-width="1"/>
+      </pattern>
+      <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="2" result="b"/>
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+
+    <!-- background grid -->
+    <rect id="layerGrid" x="0" y="0" width="1200" height="800" fill="url(#grid)" opacity="0.6"></rect>
+
+    <!-- Atrium L shell (stylized) -->
+    <g id="layerShell" filter="url(#glow)" opacity="0.9">
+      <path d="M240,680
+               C240,560 320,520 360,520
+               L360,220 L520,220 L520,160 L640,160 L640,220 L800,220 L800,520
+               C840,520 920,560 920,680
+               Z"
+            fill="none" stroke="white" stroke-opacity="0.35" stroke-width="2"/>
+      <!-- base arcs -->
+      <g stroke="white" stroke-opacity="0.25" fill="none">
+        <ellipse cx="580" cy="680" rx="300" ry="70"/>
+        <ellipse cx="580" cy="680" rx="220" ry="50"/>
+        <ellipse cx="580" cy="680" rx="140" ry="32"/>
+      </g>
+      <text x="585" y="705" text-anchor="middle" font-size="22" fill="var(--ink)">432</text>
+      <text x="585" y="660" text-anchor="middle" font-size="18" fill="var(--ink-dim)">432</text>
+    </g>
+
+    <!-- Zeta 0.429 line -->
+    <g id="layerZeta" opacity="0.95">
+      <line x1="180" y1="520" x2="980" y2="520" stroke="var(--pink)" stroke-width="2.2"/>
+      <text x="188" y="512" fill="var(--pink)" font-size="14">η ≈ 0.429 (Zeta‑Line)</text>
+    </g>
+
+    <!-- 63/64 split -->
+    <g id="layerSplit" opacity="0.9">
+      <line x1="180" y1="560" x2="980" y2="560" stroke="var(--yel)" stroke-width="1.8" stroke-dasharray="6 6"/>
+      <line x1="180" y1="600" x2="980" y2="600" stroke="var(--yel)" stroke-width="1.8" stroke-dasharray="6 6"/>
+      <text x="992" y="563" fill="var(--yel)" font-size="13">63</text>
+      <text x="992" y="603" fill="var(--yel)" font-size="13">64</text>
+    </g>
+
+    <!-- v-rails √2 √5 √17 -->
+    <g id="layerVRails" opacity="0.92">
+      <line x1="360" y1="180" x2="360" y2="680" stroke="var(--cyan)" stroke-width="2"/>
+      <line x1="580" y1="120" x2="580" y2="680" stroke="var(--cyan)" stroke-width="2"/>
+      <line x1="800" y1="180" x2="800" y2="680" stroke="var(--cyan)" stroke-width="2"/>
+      <text x="360" y="170" text-anchor="middle" fill="var(--cyan)" font-size="14">√2</text>
+      <text x="580" y="110" text-anchor="middle" fill="var(--cyan)" font-size="14">√5</text>
+      <text x="800" y="170" text-anchor="middle" fill="var(--cyan)" font-size="14">√17</text>
+    </g>
+
+    <!-- n-bands 0.429 0.456 0.487 -->
+    <g id="layerNBands" opacity="0.9">
+      <line x1="180" y1="520" x2="980" y2="520" stroke="var(--yel)" stroke-width="1.2"/>
+      <line x1="180" y1="490" x2="980" y2="490" stroke="var(--yel)" stroke-width="1.2"/>
+      <line x1="180" y1="460" x2="980" y2="460" stroke="var(--yel)" stroke-width="1.2"/>
+      <text x="990" y="520" fill="var(--yel)" font-size="12">0.429</text>
+      <text x="990" y="490" fill="var(--yel)" font-size="12">0.456</text>
+      <text x="990" y="460" fill="var(--yel)" font-size="12">0.487</text>
+    </g>
+
+    <!-- root-432 marker -->
+    <g id="layerRoot432" opacity="0.95">
+      <circle cx="580" cy="340" r="48" fill="none" stroke="var(--blue)" stroke-width="2.2"/>
+      <text x="580" y="345" text-anchor="middle" font-size="16" fill="var(--blue)">√432 ≈ 20.785</text>
+      <text x="580" y="364" text-anchor="middle" font-size="12" fill="var(--ink-dim)">= 12√3 = 2^4.3774</text>
+    </g>
+
+    <!-- 204^2 Gate -->
+    <g id="layer204" opacity="0.95">
+      <rect x="240" y="620" width="160" height="64" rx="10" ry="10" fill="none" stroke="var(--orange)" stroke-width="2"/>
+      <text x="320" y="654" text-anchor="middle" font-size="14" fill="var(--orange)">204² Gate</text>
+      <text x="320" y="636" text-anchor="middle" font-size="12" fill="var(--ink-dim)">23³+24³+25³ = 41 616</text>
+    </g>
+
+    <!-- 390° offset ring -->
+    <g id="layer390" opacity="0.95">
+      <circle cx="880" cy="640" r="48" fill="none" stroke="var(--red)" stroke-width="2"/>
+      <text x="880" y="645" text-anchor="middle" font-size="14" fill="var(--red)">390°</text>
+      <text x="880" y="662" text-anchor="middle" font-size="12" fill="var(--ink-dim)">(+30° beyond 360°)</text>
+    </g>
+
+    <!-- LIC / LY overlay -->
+    <g id="layerLIC" opacity="0.96">
+      <rect x="430" y="250" width="300" height="70" rx="10" ry="10" fill="rgba(255,255,255,0.04)" stroke="var(--green)" stroke-width="1.6"/>
+      <text x="580" y="280" text-anchor="middle" font-size="16" fill="var(--green)">(L×IC) + (L×OG) = LY</text>
+      <text x="580" y="298" text-anchor="middle" font-size="12" fill="var(--ink-dim)">Language Resonance Field → Light‑Thread</text>
+    </g>
+
+    <text class="footer">© NEXAH · Atrium Field v2 — √2 · √5 · √17 rails · η‑bands · root‑432 · 204² · 390°</text>
+  </svg>
+</div>
+
+<script>
+  // Helper to wire checkbox id to layer id
+  const pairs = [
+    ['gGrid','layerGrid'],
+    ['gShell','layerShell'],
+    ['gZeta','layerZeta'],
+    ['gSplit','layerSplit'],
+    ['gVRails','layerVRails'],
+    ['gNBands','layerNBands'],
+    ['gRoot432','layerRoot432'],
+    ['gGate204','layer204'],
+    ['g390','layer390'],
+    ['gLIC','layerLIC'],
+  ];
+  pairs.forEach(([cb,layer])=>{
+    const el = document.getElementById(cb);
+    const layerEl = document.getElementById(layer);
+    function sync(){ layerEl.style.display = el.checked ? 'initial' : 'none'; }
+    el.addEventListener('change', sync); sync();
+  });
+  // Keyboard shortcuts
+  const keyMap = {
+    'g':'gGrid','r':'gVRails','n':'gNBands','l':'gLIC','o':'g390'
+  };
+  window.addEventListener('keydown', (e)=>{
+    const k = e.key.toLowerCase();
+    if(keyMap[k]){
+      const cb = document.getElementById(keyMap[k]);
+      cb.checked = !cb.checked;
+      cb.dispatchEvent(new Event('change'));
+    }
+  });
+</script>
+</body>
+</html>

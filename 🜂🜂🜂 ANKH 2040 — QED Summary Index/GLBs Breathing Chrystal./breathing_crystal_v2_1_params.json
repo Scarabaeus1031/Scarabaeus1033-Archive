@@ -1,0 +1,36 @@
+{
+  "bands": [
+    0.429,
+    0.456,
+    0.487
+  ],
+  "radii": {
+    "BAND_0.429": 1.0,
+    "BAND_0.456": 1.15,
+    "BAND_0.487": 1.3
+  },
+  "de_ring": {
+    "radius": 1.15,
+    "ticks_24": 24,
+    "ticks_42": 42
+  },
+  "guide_390": {
+    "angle_deg": 390.0,
+    "gap_deg": -30.0
+  },
+  "root432_plate": {
+    "radius": 1.15,
+    "note": "visual guide for \u221a432 \u2248 20.785 gate"
+  },
+  "axes": true,
+  "prime_rails": {
+    "sqrt2": true,
+    "sqrt5": true,
+    "sqrt17": true
+  },
+  "euler41": {
+    "count": 40,
+    "poly": "n^2+n+41",
+    "angle_mod_deg": 360
+  }
+}

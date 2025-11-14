@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Atrium L Shell · 63–64 Split · Zeta Line 0.429</title>
+<style>
+  body {
+    background-color: #021C3A;
+    color: #e6e6e6;
+    font-family: 'IBM Plex Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  .blueprint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: radial-gradient(circle at center, #0a2b5c 0%, #011024 90%);
+  }
+  h1 {
+    font-size: 1.8rem;
+    color: #FFD55C;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+  }
+  canvas {
+    width: 700px;
+    height: 700px;
+    background: transparent;
+  }
+  p {
+    width: 65%;
+    font-size: 1rem;
+    color: #bfcbe6;
+    text-align: center;
+    margin-top: 2rem;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+  <div class="blueprint">
+    <h1>ATRIUM L SHELL · 63–64 SPLIT · ZETA LINE 0.429</h1>
+    <canvas id="lShell"></canvas>
+    <p>
+      The <strong>L Shell Atrium</strong> represents the first Venus–Earth interface: the split between harmonic layers 63 and 64 (\u03C6³ / \u03C0² ≈ 0.429). 
+      This blueprint visualizes the <strong>Zeta Line</strong> as a golden bridge between v-bands and n-bands — where the inner shell (63) folds into the outer mirror (64). 
+      The result: a luminous <em>muschel</em>-geometry, a living hinge of resonance. 
+      At this threshold, LL = Lᵢₗ · Lₒgᵢc defines the point where light touches its own shadow.
+    </p>
+  </div>
+  <script>
+    const c = document.getElementById('lShell');
+    const ctx = c.getContext('2d');
+    c.width = 700;
+    c.height = 700;
+    ctx.translate(350, 350);
+
+    function drawShell() {
+      ctx.strokeStyle = '#FFD55C';
+      ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      for (let t = 0; t < Math.PI * 2; t += 0.005) {
+        let r = 250 * Math.pow(Math.sin(t), 2) * (1 + 0.0156 * Math.sin(64 * t));
+        let x = r * Math.cos(t);
+        let y = r * Math.sin(t);
+        ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+
+      // inner resonance ring
+      ctx.beginPath();
+      ctx.strokeStyle = '#69A9FF';
+      ctx.lineWidth = 0.8;
+      for (let i = 0; i < 6; i++) {
+        ctx.ellipse(0, 0, 200 - i * 25, 100 - i * 12.5, 0, 0, Math.PI * 2);
+      }
+      ctx.stroke();
+
+      // zeta line
+      ctx.strokeStyle = '#FFD55C';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(0, -250);
+      ctx.lineTo(0, 250);
+      ctx.stroke();
+
+      // labels
+      ctx.font = '16px monospace';
+      ctx.fillStyle = '#FFD55C';
+      ctx.fillText('φ³ / π² ≈ 0.429', -80, -280);
+      ctx.fillText('63', -200, 20);
+      ctx.fillText('64', 180, 20);
+      ctx.fillText('ZETA LINE', -60, 10);
+    }
+
+    drawShell();
+  </script>
+</body>
+</html>
+
+---
+
+## IX) Update – n‑Bands, Gizeh‑Komplement & Breathing Axis (v2/v3)
+
+**Neue Assets (eingebunden):**
+- Breathing Axis Overlay (v2): [PNG](sandbox:/mnt/data/breathing_axis_overlay_v2.png)
+- Gizeh‑Komplement im n‑Band‑Feld: [PNG](sandbox:/mnt/data/giza_complement_nbands.png)
+- Atrium L‑Shell · Zeta 0.429 (v3, interaktiv): [HTML](sandbox:/mnt/data/atrium_l_shell_0_429_v3.html)
+
+**Korrektur & Präzisierung (Formel‑Layer):**
+- Zeta‑Linie: phi^3 / pi^2 ≈ 0.429 (nicht 0.456).
+- Mid‑Band: geometrisches Mittel sqrt(0.429·0.487) ≈ 0.456.
+- Top n‑Band: eta_top ≈ 0.487.
+
+**Geometrie‑Overlays:**
+- Gizeh‑Winkel: alpha = 51.84°, Komplement 48.16°. Beide als Doppel‑Ray im n‑Band‑Raster (0.429 / 0.456 / 0.487).
+- Root‑432: sqrt(432) ≈ 20.785 – Gate‑Marker im Atrium.
+- 204^2‑Tor: 23^3 + 24^3 + 25^3 = 41,616 = 204^2 – verlinkt mit Double‑Elevator (24/42).
+- 390°‑Offset‑Ring: schaltbar in v3‑HTML (Shortcut O).
+
+**Einbindung in Gallery II:**
+- Abschnitte II, V, VIII verweisen jetzt auf die neuen Overlays; alle drei Dateien sind oben verlinkt. Hinweisbanner „Formelzeile korrigiert“ im Abschnitt VII ergänzt.
+
+> Shortcuts v3‑HTML: G (Grid), R (v‑Rails), N (n‑Bands), L (LIC/LY), O (Offset).
+

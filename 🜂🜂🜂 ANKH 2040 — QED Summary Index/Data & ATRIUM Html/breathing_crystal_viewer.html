@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Breathing Crystal · n‑bands & Prime Wiring (GLB Viewer)</title>
+  <style>
+    html, body { margin:0; height:100%; background:#0b1420; color:#e6e6e6; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif; }
+    #c { width:100%; height:100%; display:block; }
+    .hud {
+      position: fixed; left: 12px; bottom: 12px; padding: 10px 12px;
+      background: rgba(10,18,28,0.72); border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px; backdrop-filter: blur(4px); font-size:13px; line-height:1.35;
+    }
+    .hud strong { color: #ffd54a; }
+    .badge {
+      position: fixed; top: 12px; left: 12px; font-weight: 600; letter-spacing: .02em;
+      background: linear-gradient(90deg,#ff6f00,#ffd54a); -webkit-background-clip: text; background-clip:text; color: transparent;
+      text-shadow: 0 0 20px rgba(255,170,0,.15);
+    }
+    .corner {
+      position: fixed; right: 12px; top: 12px; font-size:12px; color:#8fb9ff;
+      background: rgba(0,30,60,.35); padding:8px 10px; border-radius:10px; border:1px solid rgba(140,180,255,.25)
+    }
+    .link { color:#9fe1ff; text-decoration: none; border-bottom:1px dotted #9fe1ff }
+  </style>
+</head>
+<body>
+  <div class="badge">Breathing Crystal · GLB — n‑bands (0.429 / 0.571 / 0.714) & v‑rails (√2, √5, √17)</div>
+  <div id="gui" class="corner">Loading…</div>
+  <canvas id="c"></canvas>
+  <div class="hud">
+    <div><strong>wk scaling</strong> layers: <strong>3D = 0.429</strong> · <strong>4D = 0.571</strong> · <strong>5D = 0.714</strong></div>
+    <div>Horizon markers: <span style="color:#ffd54a">432</span> (−x) · <span style="color:#7fb1ff">487</span> (+x)</div>
+    <div>Breathing axis: RedCap ↔ GreyStar (shadow drift = 0.004)</div>
+    <div style="opacity:.8">Tip: scroll = zoom, drag = rotate, right‑drag = pan. Keys: <code>1</code> Top / <code>2</code> Front / <code>3</code> Isometric.</div>
+  </div>
+  <script type="module">
+    import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+    import { OrbitControls } from 'https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js';
+    import { GLTFLoader } from 'https://unpkg.com/three@0.160.0/examples/jsm/loaders/GLTFLoader.js';
+    import { RoomEnvironment } from 'https://unpkg.com/three@0.160.0/examples/jsm/environments/RoomEnvironment.js';
+    import GUI from 'https://unpkg.com/lil-gui@0.18.2/dist/lil-gui.esm.js';
+
+    const canvas = document.getElementById('c');
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
+    renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.setClearColor(0x0b1420);
+
+    const scene = new THREE.Scene();
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmrem.fromScene(new RoomEnvironment(renderer), 0.75).texture;
+
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 2000);
+    camera.position.set(3.6, 2.1, 3.6);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.target.set(0, 0, 0);
+
+    // Subtle back rim light
+    const key = new THREE.DirectionalLight(0xffffff, 1.1);
+    key.position.set(2, 2.5, 1.5);
+    scene.add(key);
+    scene.add(new THREE.AmbientLight(0x88aaff, 0.25));
+
+    const root = new THREE.Group();
+    root.name = 'root';
+    scene.add(root);
+
+    // === Load GLB ===
+    const loader = new GLTFLoader();
+    loader.load('breathing_crystal_nbands_prime_wiring.glb', (gltf) => {
+      const model = gltf.scene || gltf.scenario || gltf;
+      model.traverse(o => {
+        if (o.isMesh) {
+          o.castShadow = o.receiveShadow = true;
+          o.material.envMapIntensity = 0.8;
+        }
+      });
+      model.name = 'BreathingCrystal';
+      root.add(model);
+      fit();
+    }, undefined, (e) => {
+      console.warn('GLB load warning:', e);
+    });
+
+    // === Procedural helper geometry (rings, rails, markers) ===
+    const layers = new THREE.Group(); layers.name = 'Layers'; root.add(layers);
+
+    function ring(radius=1, color=0xffffff, y=0, segments=256, tube=0.004) {
+      const g = new THREE.TorusGeometry(radius, tube, 8, segments);
+      const m = new THREE.MeshStandardMaterial({ color, metalness: 0.55, roughness: 0.35, emissive: 0x000000 });
+      const t = new THREE.Mesh(g, m);
+      t.rotation.x = Math.PI/2;
+      t.position.y = y;
+      return t;
+    }
+
+    // wk rings (3D/4D/5D)
+    const wk3 = ring(0.429, 0xffcc55); wk3.name='wk_0.429'; layers.add(wk3);
+    const wk4 = ring(0.571, 0x66e0ff); wk4.name='wk_0.571'; layers.add(wk4);
+    const wk5 = ring(0.714, 0xa8ff66); wk5.name='wk_0.714'; layers.add(wk5);
+
+    // v‑rails (√2, √5, √17) as tilted rings
+    function rail(radius, color, tilt, name) {
+      const r = ring(radius, color); r.rotation.set(Math.PI/2, tilt, 0); r.name = name; layers.add(r); return r;
+    }
+    const r2  = rail(Math.SQRT2 * 0.25, 0x8bd7ff, 0.35, 'vRail_sqrt2');
+    const r5  = rail(Math.sqrt(5) * 0.25, 0x9fe8b0, -0.28, 'vRail_sqrt5');
+    const r17 = rail(Math.sqrt(17)* 0.20, 0xe7b3ff, 0.54, 'vRail_sqrt17');
+
+    // Horizon markers: 432 (−x) & 487 (+x)
+    function horizonMarker(x, color, label) {
+      const g = new THREE.SphereGeometry(0.02, 24, 16);
+      const m = new THREE.MeshStandardMaterial({ color, metalness: 0.8, roughness: 0.2, emissive: 0x000000 });
+      const s = new THREE.Mesh(g, m);
+      s.position.set(x, 0, 0);
+      s.name = `marker_${label}`;
+      layers.add(s);
+
+      const t = makeLabel(label, color);
+      t.position.set(x, 0.06, 0);
+      layers.add(t);
+    }
+    function makeLabel(text, color) {
+      const s = 256, pad=8;
+      const cvs = document.createElement('canvas'); cvs.width = 512; cvs.height = 128;
+      const ctx = cvs.getContext('2d');
+      ctx.fillStyle = 'rgba(0,0,0,0)'; ctx.fillRect(0,0,cvs.width,cvs.height);
+      ctx.font = '700 64px system-ui, -apple-system, Segoe UI, Roboto, Arial';
+      ctx.fillStyle = '#ffffff'; ctx.globalAlpha = .9;
+      ctx.fillStyle = '#ffffff';
+      ctx.strokeStyle = '#222';
+      ctx.lineWidth = 6; ctx.strokeText(text, pad, 78);
+      ctx.fillStyle = '#ffffff'; ctx.fillText(text, pad, 78);
+      const tex = new THREE.CanvasTexture(cvs); tex.colorSpace = THREE.SRGBColorSpace; tex.needsUpdate = true;
+      const mat = new THREE.SpriteMaterial({ map: tex, depthWrite:false, transparent:true });
+      const sprite = new THREE.Sprite(mat);
+      sprite.scale.set(0.7, 0.18, 1);
+      return sprite;
+    }
+    horizonMarker(-0.432, 0xffd54a, '432');
+    horizonMarker(+0.487, 0x7fb1ff, '487');
+
+    // Prime octave nodes around a mid ring
+    const primes = [13,41,137,241,367,487,617,751];
+    const primeGroup = new THREE.Group(); primeGroup.name='PrimeOctave'; layers.add(primeGroup);
+    const R = 0.58;
+    primes.forEach((p, i) => {
+      const a = (i/primes.length) * Math.PI*2;
+      const g = new THREE.SphereGeometry(0.015, 18, 12);
+      const m = new THREE.MeshStandardMaterial({ color: new THREE.Color().setHSL(i/primes.length, 0.6, 0.6), metalness: 0.5, roughness: 0.35 });
+      const s = new THREE.Mesh(g, m);
+      s.position.set(Math.cos(a)*R, Math.sin(a)*0.06, Math.sin(a)*R*0.65);
+      s.name = `P${p}`;
+      primeGroup.add(s);
+    });
+
+    // === GUI ===
+    const gui = new GUI({ title: 'Controls' });
+    document.getElementById('gui').replaceWith(gui.domElement);
+    const params = {
+      showGLB: true,
+      wk_0_429: true,
+      wk_0_571: true,
+      wk_0_714: true,
+      vRails: true,
+      primes: true,
+      env: 0.75,
+      view: 'Isometric',
+      topView: () => setView('Top'),
+      frontView: () => setView('Front'),
+      isoView: () => setView('Isometric'),
+      reset: () => fit()
+    };
+    gui.add(params, 'showGLB').name('Show GLB').onChange(v => {
+      const m = root.getObjectByName('BreathingCrystal');
+      if (m) m.visible = v;
+    });
+    const f1 = gui.addFolder('wk layers (3D/4D/5D)');
+    f1.add(params, 'wk_0_429').name('0.429 (3D)').onChange(v => wk3.visible = v);
+    f1.add(params, 'wk_0_571').name('0.571 (4D)').onChange(v => wk4.visible = v);
+    f1.add(params, 'wk_0_714').name('0.714 (5D)').onChange(v => wk5.visible = v);
+    const f2 = gui.addFolder('overlays');
+    f2.add(params, 'vRails').name('v‑rails (√2,√5,√17)').onChange(v => { r2.visible=r5.visible=r17.visible=v; });
+    f2.add(params, 'primes').name('prime octave nodes').onChange(v => primeGroup.visible = v);
+    const f3 = gui.addFolder('view');
+    f3.add(params, 'topView').name('Top (Plateau)');
+    f3.add(params, 'frontView').name('Front');
+    f3.add(params, 'isoView').name('Isometric');
+    gui.add(params, 'reset').name('Re‑center');
+
+    function setView(which='Isometric') {
+      if (which === 'Top') {
+        camera.position.set(0, 2.0, 0.0001);
+        camera.up.set(0,0,-1);
+      } else if (which === 'Front') {
+        camera.position.set(0, 0.8, 2.2);
+        camera.up.set(0,1,0);
+      } else {
+        camera.position.set(3.6, 2.1, 3.6);
+        camera.up.set(0,1,0);
+      }
+      controls.target.set(0,0,0);
+      controls.update();
+    }
+
+    function fit() {
+      controls.target.set(0,0,0);
+      setView('Isometric');
+    }
+
+    // Resize
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // Hotkeys
+    window.addEventListener('keydown', (e) => {
+      if (e.key === '1') setView('Top');
+      if (e.key === '2') setView('Front');
+      if (e.key === '3') setView('Isometric');
+    });
+
+    (function animate(){
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    })();
+  </script>
+</body>
+</html>

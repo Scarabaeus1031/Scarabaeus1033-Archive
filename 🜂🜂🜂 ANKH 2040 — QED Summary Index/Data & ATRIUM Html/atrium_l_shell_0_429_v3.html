@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Atrium L‑Shell · Zeta 0.429 · v3</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body{margin:0;background:#0b2236;color:#e6eef7;font-family:system-ui,Segoe UI,Helvetica,Arial,sans-serif}
+  #ui{position:fixed;left:10px;top:10px;background:#0e2a44aa;border:1px solid #1b476b;border-radius:10px;padding:10px 12px;backdrop-filter: blur(6px)}
+  .row{margin:6px 0}
+  label{display:block;font-size:13px}
+  .badge{color:#0b2236;padding:1px 6px;border-radius:6px;font-weight:600}
+  .zeta{background:#ff7e6e}
+  .mid{background:#7adde6}
+  .top{background:#8ad4f8}
+  .note{font-size:12px;color:#b8c8d6;margin-top:6px}
+  svg{display:block;margin:0 auto;max-width:1200px;width:100%;height:auto}
+</style>
+</head>
+<body>
+<div id="ui">
+  <div class="row"><b>Atrium · L‑Shell · Zeta 0.429</b></div>
+  <div class="row"><label><input type="checkbox" checked id="grid"> Blueprint grid</label></div>
+  <div class="row"><label><input type="checkbox" checked id="rails"> v‑Rails (√2, √5, √17)</label></div>
+  <div class="row"><label><input type="checkbox" checked id="bands"> n‑Bands <span class="badge zeta">0.429</span> <span class="badge mid">0.456</span> <span class="badge top">0.487</span></label></div>
+  <div class="row"><label><input type="checkbox" checked id="root"> root‑432 marker (≈20.785)</label></div>
+  <div class="row"><label><input type="checkbox" checked id="gate"> 204² Gate (23³+24³+25³)</label></div>
+  <div class="row"><label><input type="checkbox" id="ring"> 390° offset ring</label></div>
+  <div class="row"><label><input type="checkbox" id="ladder"> 17‑ladder (40–41–42–43)</label></div>
+  <div class="note">Tip: toggle keys — G (grid), R (rails), N (bands), L (root), O (ring)</div>
+</div>
+
+<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" aria-label="Atrium field map">
+  <defs>
+    <pattern id="pgrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff" stroke-width="0.4" opacity="0.08"/>
+    </pattern>
+  </defs>
+
+  <!-- grid -->
+  <rect id="layer-grid" x="0" y="0" width="1200" height="800" fill="url(#pgrid)"/>
+
+  <!-- rails √2, √5, √17 -->
+  <g id="layer-rails" stroke-linecap="round" stroke-width="2">
+    <line x1="350" x2="350" y1="120" y2="720" stroke="#7ec8ff"/>
+    <line x1="600" x2="600" y1="120" y2="720" stroke="#4fd1a1"/>
+    <line x1="850" x2="850" y1="120" y2="720" stroke="#7ec8ff"/>
+    <text x="350" y="110" fill="#7ec8ff" font-size="16">&#8730;2</text>
+    <text x="600" y="110" fill="#4fd1a1" font-size="16">&#8730;5</text>
+    <text x="850" y="110" fill="#7ec8ff" font-size="16">&#8730;17</text>
+  </g>
+
+  <!-- n-bands -->
+  <g id="layer-bands" font-size="16">
+    <line x1="120" x2="1080" y1="330" y2="330" stroke="#ff7e6e" stroke-width="3"/>
+    <text x="130" y="320" fill="#ff7e6e">phi^3/pi^2 = 0.429</text>
+
+    <line x1="120" x2="1080" y1="390" y2="390" stroke="#7adde6" stroke-width="3"/>
+    <text x="130" y="380" fill="#7adde6">mid-band ≈ 0.456</text>
+
+    <line x1="120" x2="1080" y1="450" y2="450" stroke="#8ad4f8" stroke-width="3"/>
+    <text x="130" y="440" fill="#8ad4f8">n-band (top) ≈ 0.487</text>
+  </g>
+
+  <!-- root-432 -->
+  <g id="layer-root">
+    <circle cx="600" cy="520" r="10" fill="none" stroke="#8ad4f8" stroke-width="2"/>
+    <text x="615" y="525" fill="#8ad4f8" font-size="16">432 ≈ 20.785</text>
+  </g>
+
+  <!-- 204^2 Gate -->
+  <g id="layer-gate">
+    <rect x="250" y="560" width="700" height="120" rx="20" ry="20" fill="none" stroke="#ffb089" stroke-width="2"/>
+    <text x="280" y="640" fill="#ffb089" font-size="16">204² Gate — 23³ + 24³ + 25³ = 41,616</text>
+  </g>
+
+  <!-- 390° ring -->
+  <g id="layer-ring" opacity="0.0">
+    <circle cx="600" cy="520" r="230" fill="none" stroke="#ffd77a" stroke-width="1.6" stroke-dasharray="6 6"/>
+    <text x="835" y="520" fill="#ffd77a" font-size="14">390° offset</text>
+  </g>
+
+  <!-- 17-ladder -->
+  <g id="layer-ladder" opacity="0.0" stroke="#c6e48b" font-size="14">
+    <line x1="1000" y1="300" x2="1060" y2="300" stroke="#c6e48b" stroke-width="2"/><text x="1070" y="305" fill="#c6e48b">40</text>
+    <line x1="1000" y1="360" x2="1060" y2="360" stroke="#c6e48b" stroke-width="2"/><text x="1070" y="365" fill="#c6e48b">41</text>
+    <line x1="1000" y1="420" x2="1060" y2="420" stroke="#c6e48b" stroke-width="2"/><text x="1070" y="425" fill="#c6e48b">42</text>
+    <line x1="1000" y1="480" x2="1060" y2="480" stroke="#c6e48b" stroke-width="2"/><text x="1070" y="485" fill="#c6e48b">43</text>
+    <text x="1000" y="280" fill="#c6e48b">17‑ladder (17+s)</text>
+  </g>
+</svg>
+
+<script>
+function show(id, on){ document.getElementById(id).style.opacity = on ? 1.0 : 0.0; }
+function disp(id, on){ document.getElementById(id).style.display = on ? 'block' : 'none'; }
+
+const chk = (id, f) => document.getElementById(id).addEventListener('change', e=>f(e.target.checked));
+
+chk('grid', v => disp('layer-grid', v));
+chk('rails', v => disp('layer-rails', v));
+chk('bands', v => disp('layer-bands', v));
+chk('root', v => disp('layer-root', v));
+chk('gate', v => disp('layer-gate', v));
+chk('ring', v => show('layer-ring', v));
+chk('ladder', v => show('layer-ladder', v));
+
+// keyboard shortcuts
+document.addEventListener('keydown', (e)=>{
+  if(e.key==='g' || e.key==='G'){ const c=document.getElementById('grid'); c.checked=!c.checked; c.dispatchEvent(new Event('change')); }
+  if(e.key==='r' || e.key==='R'){ const c=document.getElementById('rails'); c.checked=!c.checked; c.dispatchEvent(new Event('change')); }
+  if(e.key==='n' || e.key==='N'){ const c=document.getElementById('bands'); c.checked=!c.checked; c.dispatchEvent(new Event('change')); }
+  if(e.key==='l' || e.key==='L'){ const c=document.getElementById('root'); c.checked=!c.checked; c.dispatchEvent(new Event('change')); }
+  if(e.key==='o' || e.key==='O'){ const c=document.getElementById('ring'); c.checked=!c.checked; c.dispatchEvent(new Event('change')); }
+});
+</script>
+</body>
+</html>

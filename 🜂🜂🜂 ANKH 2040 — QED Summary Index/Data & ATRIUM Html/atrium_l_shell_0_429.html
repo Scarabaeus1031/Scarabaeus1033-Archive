@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Atrium L Shell · 63–64 Split · Zeta Line 0.429</title>
+  <style>
+    :root{
+      --bg:#0c2340;
+      --grid:#1a3a6b;
+      --gold:#f0c44f;
+      --aqua:#79e0e0;
+      --pink:#ff7ab6;
+      --white:#f7f7fb;
+      --muted:#b8c7e0;
+    }
+    html,body{margin:0;height:100%;background:var(--bg);color:var(--white);font:16px/1.4 system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    header{padding:24px 20px 0; text-align:center}
+    h1{margin:0 0 8px; font-weight:700; letter-spacing:.02em}
+    .sub{opacity:.85; margin-bottom:16px}
+    .wrap{max-width:1100px;margin:0 auto;padding:16px 20px 40px}
+    .panel{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:14px 16px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .controls{display:flex;flex-wrap:wrap;gap:.75rem;margin:10px 0 16px}
+    .controls label{display:flex;align-items:center;gap:.5rem;background:#102b52;border:1px solid rgba(255,255,255,.12);padding:6px 10px;border-radius:10px;cursor:pointer}
+    .controls input{accent-color:var(--gold);}
+    .legend{display:flex;flex-wrap:wrap;gap:12px; font-size:14px; color:var(--muted)}
+    .pill{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:999px;background:#0e2a50;border:1px solid rgba(255,255,255,.1)}
+    .sw{display:inline-block;width:14px;height:14px;border-radius:3px}
+    .sw-gold{background:var(--gold)}
+    .sw-aqua{background:var(--aqua)}
+    .sw-pink{background:var(--pink)}
+    .sw-white{background:#fff}
+    svg{width:100%; height:auto; display:block; background:
+      linear-gradient(rgba(255,255,255,.02),rgba(255,255,255,.02)),
+      radial-gradient(ellipse at center, rgba(255,255,255,.05), transparent 60%);
+      border-radius:14px; overflow:hidden}
+    .caption{margin-top:10px; color:var(--muted)}
+    code{background:#0e2a50;padding:.15em .35em;border-radius:6px;border:1px solid rgba(255,255,255,.08)}
+    a{color:var(--aqua); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .grid line{stroke:#1a3a6b;stroke-width:.75}
+    .label{font:700 14px/1 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; fill:var(--white); letter-spacing:.02em}
+    .note{font:500 12px/1.1 ui-sans-serif, system-ui; fill:var(--muted)}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Atrium L Shell · 63–64 Split · Zeta Line 0.429</h1>
+    <div class="sub">Muschel‑Atrium (L‑Winkel) mit 63/64‑Split, Zeta‑Achse φ³/π² ≈ 0.429, v‑Rails (√2, √5, √17) · n‑Bands (η = {0.429, 0.456, 0.487}) · LIC / LY Marker</div>
+  </header>
+  <div class="wrap">
+    <div class="panel">
+      <div class="controls">
+        <label><input id="toggleZeta" type="checkbox" checked> Zeta‑Linie 0.429</label>
+        <label><input id="toggleSplit" type="checkbox" checked> 63/64‑Split</label>
+        <label><input id="toggleRails" type="checkbox" checked> v‑Rails √2 √5 √17</label>
+        <label><input id="toggleNBands" type="checkbox" checked> n‑Bands η‑Fenster</label>
+        <label><input id="toggleLIC" type="checkbox" checked> LIC / LY Marker</label>
+        <label><input id="toggleGrid" type="checkbox" checked> Hintergrund‑Grid</label>
+      </div>
+
+      <svg id="svg" viewBox="0 0 1200 800" aria-label="Atrium L Shell Diagramm">
+        <!-- Grid -->
+        <g class="grid" id="layerGrid">
+          <defs>
+            <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+              <path d="M24 0H0V24" fill="none" stroke="#1a3a6b" stroke-width=".75"/>
+            </pattern>
+          </defs>
+          <rect x="0" y="0" width="1200" height="800" fill="url(#grid)" />
+        </g>
+
+        <!-- Shell base -->
+        <g id="layerShell">
+          <!-- Base arc (the opened 'shell') -->
+          <path d="M150,620 C360,500 840,500 1050,620
+                   C900,740 300,740 150,620Z"
+                fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2"/>
+          <!-- Vertical spine (L‑angle) -->
+          <path d="M600,160 L600,680" stroke="rgba(255,255,255,.7)" stroke-width="3"/>
+          <!-- Base plate -->
+          <line x1="240" y1="620" x2="960" y2="620"
+                stroke="rgba(255,255,255,.5)" stroke-width="2"/>
+          <!-- 432 rings -->
+          <g opacity=".9">
+            <circle cx="600" cy="620" r="42" fill="none" stroke="rgba(240,196,79,.8)" stroke-width="2"/>
+            <circle cx="600" cy="620" r="120" fill="none" stroke="rgba(240,196,79,.45)" stroke-width="2"/>
+            <circle cx="600" cy="620" r="200" fill="none" stroke="rgba(240,196,79,.25)" stroke-width="2"/>
+          </g>
+          <!-- Labels 432 -->
+          <text x="600" y="615" text-anchor="middle" class="label">432</text>
+          <text x="600" y="535" text-anchor="middle" class="note">432</text>
+          <text x="600" y="455" text-anchor="middle" class="note">432</text>
+        </g>
+
+        <!-- Zeta line (φ³/π² ≈ 0.429) -->
+        <g id="layerZeta">
+          <line x1="600" y1="160" x2="600" y2="680" stroke="var(--gold)" stroke-width="5" stroke-dasharray="10 7"/>
+          <text x="612" y="200" class="label" fill="var(--gold)">ζ = φ³/π² ≈ 0.429</text>
+        </g>
+
+        <!-- 63/64 split -->
+        <g id="layerSplit">
+          <line x1="600" y1="360" x2="1020" y2="360" stroke="var(--aqua)" stroke-width="3" />
+          <line x1="600" y1="396" x2="1020" y2="396" stroke="var(--aqua)" stroke-width="1.5" opacity=".9" />
+          <text x="1035" y="366" class="label" fill="var(--aqua)">63/64 Split</text>
+          <text x="1035" y="396" class="note" fill="var(--aqua)">β‑Split · 1/64</text>
+        </g>
+
+        <!-- v‑Rails -->
+        <g id="layerRails">
+          <path d="M300,540 Q600,400 900,540" fill="none" stroke="var(--pink)" stroke-width="2.5" />
+          <path d="M280,580 Q600,430 920,580" fill="none" stroke="var(--pink)" stroke-width="2.5" opacity=".7"/>
+          <path d="M260,620 Q600,460 940,620" fill="none" stroke="var(--pink)" stroke-width="2.5" opacity=".5"/>
+          <text x="280" y="560" class="label" fill="var(--pink)">v‑Rails √2 · √5 · √17</text>
+        </g>
+
+        <!-- n‑Bands -->
+        <g id="layerNBands">
+          <rect x="150" y="250" width="200" height="24" fill="rgba(121,224,224,.25)" stroke="var(--aqua)" />
+          <rect x="150" y="280" width="200" height="24" fill="rgba(121,224,224,.25)" stroke="var(--aqua)" />
+          <rect x="150" y="310" width="200" height="24" fill="rgba(121,224,224,.25)" stroke="var(--aqua)" />
+          <text x="160" y="245" class="label" fill="var(--aqua)">n‑Bands η</text>
+          <text x="360" y="268" class="note" fill="var(--aqua)">0.429</text>
+          <text x="360" y="298" class="note" fill="var(--aqua)">0.456</text>
+          <text x="360" y="328" class="note" fill="var(--aqua)">0.487</text>
+        </g>
+
+        <!-- LIC / LY markers -->
+        <g id="layerLIC">
+          <text x="780" y="210" class="label" fill="var(--white)">LIC = L·I·C</text>
+          <text x="780" y="234" class="note" fill="var(--white)">(Logic · Information · Container)</text>
+          <text x="780" y="265" class="label" fill="var(--white)">LY = (L×IC) + (L×OG)</text>
+          <circle cx="600" cy="330" r="12" fill="var(--gold)"/>
+          <text x="618" y="336" class="note" fill="var(--gold)">root‑432 Gate ≈ 20.785</text>
+        </g>
+
+      </svg>
+
+      <div class="legend" style="margin-top:12px">
+        <div class="pill"><span class="sw sw-gold"></span> Zeta‑Achse ζ ≈ 0.429</div>
+        <div class="pill"><span class="sw sw-aqua"></span> n‑Bands η</div>
+        <div class="pill"><span class="sw sw-pink"></span> v‑Rails √2 √5 √17</div>
+        <div class="pill"><span class="sw sw-white"></span> LIC / LY Marker</div>
+      </div>
+
+      <p class="caption">
+        <strong>Formeln:</strong>
+        √432 = 12√3 ≈ 20.785 · 3n(n²+2) → <em>Quadrat‑Treffer bei n=24</em> ⇒ 204².<br/>
+        ζ = φ³/π² ≈ 0.429 verankert die n‑Bands; v‑Rails folgen √2/√5/√17. LIC verknüpft Logik‑, Informations‑ und Container‑Schichten; LY modelliert den Licht‑Faden (Light‑Thread).
+      </p>
+    </div>
+
+    <p class="caption" style="margin-top:16px">
+      Tipp: Layer per Schaltern ein/ausblenden, um die Übergänge (Rails ↔ Bands ↔ Gate) zu studieren.
+    </p>
+  </div>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    const toggle = (checkboxId, layerId) => {
+      $(checkboxId).addEventListener('change', e => {
+        $(layerId).style.display = e.target.checked ? 'block' : 'none';
+      });
+    };
+    toggle('toggleZeta','layerZeta');
+    toggle('toggleSplit','layerSplit');
+    toggle('toggleRails','layerRails');
+    toggle('toggleNBands','layerNBands');
+    toggle('toggleLIC','layerLIC');
+    toggle('toggleGrid','layerGrid');
+  </script>
+</body>
+</html>
