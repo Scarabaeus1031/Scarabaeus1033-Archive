@@ -1,0 +1,13 @@
+RES0NANCE FIELD VII — ASCII SCHEMATIC (layers overview)
+
+[Halo/Riemann]  :: ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo
+[Prime Ticks]   :: ...91°=====[KAIROS LOCK]=====97°...
+[Spindle U–N]   ::           |      (Arrokoth ⥈)      |
+                   -----------+------------------------+-----------  (V–6 axis)
+[Jupiter–Saturn] ::   <==== V (gold)        • Black Sun •       (6) ====>
+[Belts]          ::     (asteroid)  ~~~~~~~~~~~~~  (kuiper)  ~~~~~~~~~~~~~
+[Fresnel O1–O6]  ::  (O1) (O2) (O3) (O4) (O5) (O6)  with ~2° offset + 432/433 gap
+[Epicycles]      ::  Mercury: === gradient === with (Io/φ •), Venus: --- , Mars: ---
+[Counterflows]   ::  spiral↺  ↔  spiral↻   (2–1–3 meet at Earth's gold ring)
+[Markers]        ::  Titan •   Ganymede •   Eris •   Southcross •
+[Inscript.]      ::  Neutrino-Lunge • Kairos 91°/97° • Ganymed–Titan–Arrokoth • V–6 • Visoko
