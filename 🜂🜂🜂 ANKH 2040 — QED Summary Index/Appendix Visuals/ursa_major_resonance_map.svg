@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="700">
+<rect x="0" y="0" width="100%" height="100%" fill="white"/>
+<text x="40" y="40" font-family="Arial" font-size="22">Ursa Major Resonance Map — φ‑Pentagon Overlay</text>
+<polyline points="151.42857142857142,266.0 232.85714285714286,490.0 395.7142857142857,546.0 450.0,389.2 558.5714285714287,349.99999999999994 639.9999999999999,322.0 748.5714285714286,293.99999999999994" fill="none" stroke="black" stroke-width="2"/>
+<circle cx="151.42857142857142" cy="266.0" r="5" fill="#000000" />
+<text x="159.42857142857142" y="258.0" font-family="Arial" font-size="14">Dubhe</text>
+<circle cx="232.85714285714286" cy="490.0" r="5" fill="#000000" />
+<text x="240.85714285714286" y="482.0" font-family="Arial" font-size="14">Merak</text>
+<circle cx="395.7142857142857" cy="546.0" r="5" fill="#000000" />
+<text x="403.7142857142857" y="538.0" font-family="Arial" font-size="14">Phecda</text>
+<circle cx="450.0" cy="389.2" r="5" fill="#000000" />
+<text x="458.0" y="381.2" font-family="Arial" font-size="14">Megrez</text>
+<circle cx="558.5714285714287" cy="349.99999999999994" r="5" fill="#000000" />
+<text x="566.5714285714287" y="341.99999999999994" font-family="Arial" font-size="14">Alioth</text>
+<circle cx="639.9999999999999" cy="322.0" r="5" fill="#000000" />
+<text x="647.9999999999999" y="314.0" font-family="Arial" font-size="14">Mizar</text>
+<circle cx="748.5714285714286" cy="293.99999999999994" r="5" fill="#000000" />
+<text x="756.5714285714286" y="285.99999999999994" font-family="Arial" font-size="14">Alkaid</text>
+<polygon points="488.00000000000006,302.6752415750147 358.9280442170863,362.46237921249264 408.2291443317358,459.2 567.7708556682642,459.2 617.0719557829137,362.4623792124927" fill="none" stroke="black" stroke-width="2"/>
+<text x="40" y="670" font-family="Arial" font-size="14">Golden ratio φ overlay approximates harmonic enclosure around Megrez–Alioth region.</text>
+</svg>
