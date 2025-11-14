@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Shadow·Light Resonance — Torus Viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    html, body { margin:0; height:100%; background:#0a0a0a; color:#ddd; font-family:system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji';}
+    #ui { position:fixed; top:10px; left:10px; right:10px; display:flex; gap:12px; align-items:center; z-index:10; background:rgba(0,0,0,.35); padding:8px 12px; border-radius:12px; backdrop-filter: blur(6px); }
+    #ui button, #ui label { font-size:14px; }
+    #credits { position:fixed; bottom:10px; left:10px; opacity:.7; font-size:12px;}
+    canvas { display:block; }
+    .spacer { flex:1; }
+    input[type="range"] { width:160px; }
+  </style>
+</head>
+<body>
+  <div id="ui">
+    <strong>Shadow·Light Resonance — Torus</strong>
+    <div class="spacer"></div>
+    <label>Rotate <input id="rot" type="checkbox" checked></label>
+    <label>Glow <input id="glow" type="range" min="0" max="2" step="0.01" value="0.45"></label>
+    <label>Exposure <input id="exp" type="range" min="0.5" max="2.0" step="0.01" value="1.0"></label>
+    <button id="reset">Reset View</button>
+  </div>
+  <div id="credits">Three.js viewer · Load time depends on your connection.</div>
+
+  <!-- Three.js and helpers from CDN (requires internet) -->
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+  <script src="https://unpkg.com/three@0.160.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://unpkg.com/three@0.160.0/examples/js/loaders/GLTFLoader.js"></script>
+
+  <script>
+  (function () {
+    const params = new URLSearchParams(window.location.search);
+    const url = params.get('model') || 'shadow_light_resonance_torus_banded_indigo_elliptic.glb';
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha:false });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.0;
+    document.body.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x0a0a0a);
+
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.01, 100);
+    camera.position.set(1.8, 1.0, 2.0);
+
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.target.set(0, 0.08, 0);
+    controls.enableDamping = true;
+
+    // Lights
+    const hemi = new THREE.HemisphereLight(0x9fb3ff, 0x101015, 0.9);
+    scene.add(hemi);
+
+    const key = new THREE.DirectionalLight(0xffffff, 1.2);
+    key.position.set(2, 3, 2);
+    scene.add(key);
+
+    const fill = new THREE.DirectionalLight(0x88aaff, 0.6);
+    fill.position.set(-2, 1, -2);
+    scene.add(fill);
+
+    // Subtle ground glow
+    const ground = new THREE.Mesh(
+      new THREE.PlaneGeometry(10,10),
+      new THREE.MeshPhysicalMaterial({
+        color: 0x0b0b10,
+        roughness: 0.9,
+        metalness: 0.0
+      })
+    );
+    ground.rotation.x = -Math.PI/2;
+    ground.position.y = -0.22;
+    scene.add(ground);
+
+    // Load model
+    const loader = new THREE.GLTFLoader();
+    let model = null;
+    loader.load(url, (gltf) => {
+      model = gltf.scene;
+      scene.add(model);
+      // Try to find the torus mesh & tweak material
+      model.traverse((obj) => {
+        if (obj.isMesh) {
+          obj.castShadow = true;
+          obj.receiveShadow = true;
+          if (obj.material && obj.material.isMeshPhysicalMaterial) {
+            obj.material.roughness = 0.15;
+            obj.material.metalness = 0.0;
+            obj.material.clearcoat = 0.6;
+            obj.material.clearcoatRoughness = 0.25;
+            obj.material.sheen = 1.0;
+            obj.material.sheenRoughness = 0.6;
+          }
+        }
+      });
+    }, undefined, (err) => {
+      console.error('GLB load error:', err);
+      const p = document.createElement('pre');
+      p.textContent = 'Failed to load model: ' + url + '\\n' + err;
+      p.style.color = '#f66';
+      p.style.position = 'fixed';
+      p.style.top = '44px';
+      p.style.left = '10px';
+      document.body.appendChild(p);
+    });
+
+    // UI
+    const uiRot = document.getElementById('rot');
+    const uiGlow = document.getElementById('glow');
+    const uiExp = document.getElementById('exp');
+    const uiReset = document.getElementById('reset');
+
+    uiGlow.addEventListener('input', () => {
+      key.intensity = 1.0 + parseFloat(uiGlow.value);
+      fill.intensity = 0.5 + parseFloat(uiGlow.value) * 0.3;
+    });
+
+    uiExp.addEventListener('input', () => {
+      renderer.toneMappingExposure = parseFloat(uiExp.value);
+    });
+
+    uiReset.addEventListener('click', () => {
+      camera.position.set(1.8, 1.0, 2.0);
+      controls.target.set(0, 0.08, 0);
+      controls.update();
+    });
+
+    // Handle resize
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth/window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // Animate
+    const clock = new THREE.Clock();
+    function tick(){
+      const t = clock.getElapsedTime();
+      if (model && uiRot.checked) {
+        model.rotation.y = t * 0.25;
+        model.rotation.x = Math.sin(t * 0.17) * 0.05;
+      }
+      controls.update();
+      renderer.render(scene, camera);
+      requestAnimationFrame(tick);
+    }
+    tick();
+  })();
+  </script>
+</body>
+</html>
